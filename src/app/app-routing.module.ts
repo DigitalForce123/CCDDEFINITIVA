@@ -58,7 +58,7 @@ const routes: Routes = [
   //CARRERA
   { path: 'carrera', component: CarreraComponent, },
   { path: 'carrera/validacion', component: CarreravalidarComponent, },
-  { path: 'carrera/inscribirFinal', component: CarreraregistrarcodigoComponent, },
+  { path: 'carrera/inscribirdiciembre', component: CarreraregistrarcodigoComponent, },
   { path: 'carrera/terminos', component: TerminoscarreraComponent, },
   { path: 'carrera/inscribir', component: CarreraregistrarlibreComponent, },
   { path: 'carrera/login', component: LogincarreraComponent, },

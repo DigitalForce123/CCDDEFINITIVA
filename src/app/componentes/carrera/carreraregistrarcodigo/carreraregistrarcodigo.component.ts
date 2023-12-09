@@ -18,7 +18,7 @@ export class CarreraregistrarcodigoComponent {
 
 
   usuarioDto: UsuarioDto[] = [];
-  nuevoUsuario: UsuarioDto = { variable1: '', variable2: '', variable3: '', variable4: '', variable5: '', variable6: '', variable7: '', variable8: '', variable9: '', variable10: '', variable11: '', variable12: '', variable13: '', variable14: '', variable15: '', variable16: 'pendiente', evento: 'carrera7k', };
+  nuevoUsuario: UsuarioDto = { variable1: '', variable2: '', variable3: '', variable4: '', variable5: '', variable6: '', variable7: '', variable8: '', variable9: '', variable10: '', variable11: '', variable12: '', variable13: '', variable14: '', variable15: '', variable16: 'pendiente', evento: 'carreralibre', };
   terminos = ""
   terminosprincipal = ""
   pdfnombremenor = ""
@@ -34,7 +34,7 @@ export class CarreraregistrarcodigoComponent {
   eps = ""
   discapacidad = ""
 
-
+  l=""
 
   confircorreo = ""
   imagenPrevia: any;
@@ -149,7 +149,7 @@ export class CarreraregistrarcodigoComponent {
         }
       ],
       content: [
-        { text: 'Registro Exitoso Carrera CICLOVIDA RUN 10K 40 AÑOS', fontSize: 27, bold: true, margin: [0, 100, 0, 0] },
+        { text: 'Registro Exitoso Carrera CICLOVIDA RUN 7K 40 AÑOS', fontSize: 27, bold: true, margin: [0, 300, 0, 0] },
 
         { text: 'Datos Del Participante:', fontSize: 20, bold: true, margin: [0, 10, 0, 10] },
         {
@@ -158,7 +158,7 @@ export class CarreraregistrarcodigoComponent {
             headerRows: 0,
             body: [
               [{ text: 'Nombre del Participante:', style: 'tableHeader', bold: true }, this.pdfnombremenor],
-              [{ text: 'Código unico de registro: ', style: 'tableHeader', bold: true }, this.x],
+              [{ text: 'Código unico de registro: ', style: 'tableHeader', bold: true }, this.l],
 
 
             ]
@@ -168,7 +168,7 @@ export class CarreraregistrarcodigoComponent {
           fontSize: 15
         },
 
-  
+
 
 
 
@@ -184,26 +184,23 @@ export class CarreraregistrarcodigoComponent {
   public formulariomenorvalidar() {
 
 
-    this.nuevoUsuario.variable15 = String(this.x)
+
     this.nuevoUsuario.variable5 = this.edad + this.genero
     this.nuevoUsuario.variable8 = this.comuna + this.seleccionarDepartamento + this.seleccionarCiudad
     this.nuevoUsuario.variable10 = this.TipoSangre + this.eps
     this.nuevoUsuario.variable12 = this.tipoidadulto + this.Frecuencia + this.discapacidad
 
 
-    this.pdfnombremenor = this.nuevoUsuario.variable2
+    this.pdfnombremenor = this.nuevoUsuario.variable3
 
+    this.nuevoUsuario.variable15= String(this.x)
 
 
 
 
     var validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
     console.log(this.nuevoUsuario)
-    if (this.nuevoUsuario.variable2 == "") {
-      Swal.fire('La carrera debe ser diligenciado')
-    }
-
-    else if (this.nuevoUsuario.variable1 == "") {
+    if (this.nuevoUsuario.variable1 == "") {
 
       Swal.fire('La identificacion del participante no debe ser diligenciado')
 
@@ -274,11 +271,11 @@ export class CarreraregistrarcodigoComponent {
       Swal.fire('El Nivel Academico debe ser diligenciado')
 
 
-    }else if (this.comuna == "") {
+    } else if (this.comuna == "") {
       Swal.fire('Debes elegir la comuna')
 
 
-    }else if (this.genero == "") {
+    } else if (this.genero == "") {
       Swal.fire('debes elegir el genero')
 
 
@@ -287,19 +284,20 @@ export class CarreraregistrarcodigoComponent {
 
       Swal.fire('Se debe aceptar los terminos y condiciones de las consideraciones y reglas de la carrera atletico recreativa')
 
-    }   else if (this.terminosprincipal == "") {
+    } else if (this.terminosprincipal == "") {
 
       Swal.fire('se debe Aceptar autorización de participación del menor de edad ')
 
     }
 
-    
+
     else {
       console.log(this.nuevoUsuario)
       this.carreraService.createUserCarrera7k(this.nuevoUsuario).subscribe(
         (data: any) => {
           if (data.status == 200) {
             Swal.fire('Felicidades ya se encuentran participando en el evento con numero de registro: ' + this.x)
+            this.l = String(this.x)
             this.createPdf()
             this.nuevoUsuario.variable1 = ""
             this.nuevoUsuario.variable2 = ""

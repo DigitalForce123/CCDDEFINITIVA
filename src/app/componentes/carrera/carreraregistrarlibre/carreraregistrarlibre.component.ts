@@ -60,6 +60,7 @@ export class CarreraregistrarlibreComponent {
   min = 100000;
   max = 900000;
   x = Math.floor(Math.random() * (this.max - this.min + 1) + this.min);
+  l= ""
 
   SendDataonChange(event: any) {
     console.log(event.target.value);
@@ -149,7 +150,7 @@ export class CarreraregistrarlibreComponent {
         }
       ],
       content: [
-        { text: 'Registro Exitoso Carrera CICLOVIDA RUN 10K 40 AÑOS', fontSize: 27, bold: true, margin: [0, 100, 0, 0] },
+        { text: 'Registro Exitoso Carrera CICLOVIDA RUN 7K 40 AÑOS', fontSize: 27, bold: true, margin: [0, 300, 0, 0] },
 
         { text: 'Datos Del Participante:', fontSize: 20, bold: true, margin: [0, 10, 0, 10] },
         {
@@ -158,7 +159,7 @@ export class CarreraregistrarlibreComponent {
             headerRows: 0,
             body: [
               [{ text: 'Nombre del Participante:', style: 'tableHeader', bold: true }, this.pdfnombremenor],
-              [{ text: 'Código unico de registro: ', style: 'tableHeader', bold: true }, this.x],
+              [{ text: 'Código unico de registro: ', style: 'tableHeader', bold: true }, this.l],
 
 
             ]
@@ -184,15 +185,15 @@ export class CarreraregistrarlibreComponent {
   public formulariomenorvalidar() {
 
 
-    this.nuevoUsuario.variable15 = String(this.x)
     this.nuevoUsuario.variable5 = this.edad + this.genero
     this.nuevoUsuario.variable8 = this.comuna + this.seleccionarDepartamento + this.seleccionarCiudad
     this.nuevoUsuario.variable10 = this.TipoSangre + this.eps
     this.nuevoUsuario.variable12 = this.tipoidadulto + this.Frecuencia + this.discapacidad
 
 
-    this.pdfnombremenor = this.nuevoUsuario.variable2
+    this.pdfnombremenor = this.nuevoUsuario.variable3
 
+    this.nuevoUsuario.variable15= String(this.x)
 
 
 
@@ -302,6 +303,7 @@ export class CarreraregistrarlibreComponent {
         (data: any) => {
           if (data.status == 200) {
             Swal.fire('Felicidades ya se encuentran participando en el evento con numero de registro: ' + this.x)
+            this.l= String(this.x)
             this.createPdf()
             this.nuevoUsuario.variable1 = ""
             this.nuevoUsuario.variable2 = ""
