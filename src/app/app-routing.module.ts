@@ -42,14 +42,6 @@ const routes: Routes = [
 
 
 
-  //CIUDADELA
-  { path: 'ciudadela', component: CiudadelaComponent, },
-  { path: 'ciudadela/validacion', component:  CiudadelavalidarComponent},
-  { path: 'ciudadela/inscribirextrasval', component: CiudadelaregistrarlibreComponent, },
-  { path: 'terminos', component: TerminosciudComponent, },
-  { path: 'ciudadela/login', component: LoginciudComponent, },
-  { path: 'ciudadela/login/inicio', component: IniciociudComponent,  canActivate:[CiudadelaGuard] },
-
 
 
 
