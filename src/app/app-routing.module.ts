@@ -28,7 +28,7 @@ import { AdministradorGuard } from './servicios/guardas/administrador.guard';
 import { CarreraGuard } from './servicios/guardas/carrera.guard';
 import { CiudadelaGuard } from './servicios/guardas/ciudadela.guard';
 import { TerminoscarreraComponent } from './componentes/carrera/terminoscarrera/terminoscarrera.component';
-
+import { NosotrosComponent } from './componentes/principales/nosotros/nosotros.component';
 
 
 
@@ -36,8 +36,9 @@ import { TerminoscarreraComponent } from './componentes/carrera/terminoscarrera/
 const routes: Routes = [
 
   //INICIO
-
-  { path: '', component: InicioComponent, },
+  { path: '', redirectTo: '/inicio', pathMatch: 'full'},
+  { path: 'inicio', component: InicioComponent, },
+  { path: 'nosotros', component: NosotrosComponent, },
   { path: 'contacto', component: ContactoComponent, },
 
 
@@ -83,10 +84,9 @@ const routes: Routes = [
 
 
 
-  
 
-  { path: '', pathMatch: 'full', redirectTo: '' },
-  { path: '**', redirectTo: '', pathMatch: 'full' },
+
+  { path: '**', redirectTo: '/inicio', pathMatch: 'full' },
 ];
 
 @NgModule({

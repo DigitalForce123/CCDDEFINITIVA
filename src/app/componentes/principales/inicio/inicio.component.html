@@ -1,116 +1,54 @@
 <app-navbarp></app-navbarp>
-
-
-<div class="b-example-divider"></div>
-
-<div class="px-5  my-5 text-center ">
-
-    <h1 class="display-5 fw-bold">EVENTOS DE CALI CIUDAD DEPORTIVA</h1>
-    <div class="col-lg-6 mx-auto">
-
+<header class="header-container">
+  <video autoplay loop muted playsinline class="video-bg">
+    <source src="../../../../assets/video-header.mp4" type="video/mp4">
+    Tu navegador no soporta videos.
+  </video>
+  <div class="overlay">
+    <h1 class="display-4">Explora, Conéctate, Vive la Experiencia</h1>
+    <p class="lead">Descubre los eventos más emocionantes cerca de ti.</p>
+    <div class="input-group mb-3 w-50 mx-auto">
+      <input [(ngModel)]="terminoBusqueda" type="text" class="form-control" placeholder="Busca eventos, ciudades o categorías...">
+      <button class="btn btn-primary" (click)="buscarEventos()">Buscar</button>
     </div>
+  </div>
+</header>
+<div class="container text-center">
+
+
+<!--   <section class="featured-events">
+    <h2>Eventos Destacados</h2>
+
+    <div class="slider">
+      <button class="slider-btn prev" (click)="prevEvent()">&#10094;</button>
+
+      <div *ngFor="let event of eventosDestacados; let i = index"
+           class="slide" [class.active]="i === currentIndex">
+        <img [src]="event.image" alt="{{ event.title }}">
+        <div class="event-info">
+          <h5>{{ event.title }}</h5>
+          <p>{{ event.description }}</p>
+        </div>
+      </div>
+
+      <button class="slider-btn next" (click)="nextEvent()">&#10095;</button>
+    </div>
+  </section> -->
+
+
+  <section class="event-grid">
+    <div class="card shadow-sm" *ngFor="let event of eventosFiltrados">
+      <img [src]="event.image" class="card-img-top" alt="{{ event.title }}">
+      <div class="card-body">
+        <h5 class="card-title">{{ event.title }}</h5>
+        <p class="card-text">{{ event.description }}</p>
+      </div>
+    </div>
+  </section>
+
+
+  <footer class="text-center">
+    <p class="mb-0">&copy; 2025 Plataforma de Eventos. Todos los derechos reservados.</p>
+  </footer>
 </div>
 
-<div class="container marketing">
-
-    <hr class="featurette-divider">
-
-
-    <div class="row ">
-        <div class="col-md-7">
-            <h1 class="">CIUDADELA DE LA ALEGRIA. <span class="text-muted">INSCRIPCIONES ABIERTAS</span></h1>
-            <p class="lead">
-                Ten presente que a través de este medio se Habilitara este mismo link de inscripcion según los horarios establecidos por la Secretaría de Deporte y Recreación de Cali.</p>
-            <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
-                <a type="button" href="ciudadela" class="btn bazul btn-lg px-4 me-md-2 fw-bold">
-                    Mas informacion</a>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
-                height="500" src="../../../assets/ciudadela.webp" alt="Ciudadela de la Alegria">
-
-
-        </div>
-    </div>
-
-
-
-    <hr class="featurette-divider">
-
-    <div class="row ">
-        <div class="col-md-7">
-            <h1 class="">FUTBOL EN FAMILIA. <span class="text-muted">Vivamos el futbol en paz</span></h1>
-            <p class="lead">Juntando a la familia se promueve fomentar el deporte en paz, apoyando a nuestros grandes
-                equipos de la ciudad.</p>
-            <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
-                <a type="button" href="futbolfamilia" class="btn bazul btn-lg px-4 me-md-2 fw-bold">mas
-                    información</a>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
-                height="500" src="../../../assets/FutbolEnFamilia.webp" alt="Futbol en Familia">
-
-
-        </div>
-    </div>
-    <hr class="featurette-divider">
-
-
-
-    <hr class="featurette-divider">
-
-    <div class="row ">
-        <div class="col-md-7">
-            <h1 class="">CARRERAS ATLÉTICAS
-                . <span class="text-muted">Si la mente lo cree, tus piernas obedecerán.</span></h1>
-            <p class="lead">Apuntamos a que la ciudadanía caleña estimule la actividad física a través de eventos de
-                ciudad gratuitos y uno de estos son nuestras carreras, ya que, al ser para todo tipo de público genera
-                un impacto masivo en la ciudad.</p>
-            <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
-                <a type="button" href="carrera" class="btn bazul btn-lg px-4 me-md-2 fw-bold">mas
-                    información</a>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
-                height="500" src="../../../assets/CarreraDeportiva.webp" alt="Carrera Deportivas">
-
-
-        </div>
-    </div>
-
-
-
-    <hr class="featurette-divider">
-
-    <div class="row ">
-        <div class="col-md-7">
-            <h1 class="">BALONCESTO EN FAMILIA.<span class="text-muted">Conseguir buenos jugadores es fácil. Conseguir
-                    que jueguen juntos es la parte más difícil</span></h1>
-            <p class="lead">Juntando a la familia se promueve el baloncesto fomentando el deporte apoyando a nuestro
-                equipo de la ciudad.</p>
-            <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
-                <a type="button" href="baloncestofamilia" class="btn bazul btn-lg px-4 me-md-2 fw-bold">mas
-                    información</a>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
-                height="500" src="../../../assets/BaloncestoEnFamilia.webp" alt="Baloncesto en Familia">
-
-
-        </div>
-    </div>
-    <hr class="featurette-divider">
-
-</div>
-
-
-
-<app-footerp></app-footerp>
