@@ -51,9 +51,9 @@ const routes: Routes = [
   //CARRERA
   { path: 'carrera', component: CarreraComponent, },
   { path: 'carrera/validacion', component: CarreravalidarComponent, },
-  { path: 'carrera/inscribirdiciembre', component: CarreraregistrarcodigoComponent, },
+  { path: 'eventos/runcentro/codigos', component: CarreraregistrarcodigoComponent, },// revisar inv de tallas, hacer cambio validación tallas y cambiar routing
   { path: 'carrera/terminos', component: TerminoscarreraComponent, },
-  { path: 'carrera/inscribir', component: CarreraregistrarlibreComponent, },
+  { path: 'carrera/inscribir', component: CarreraregistrarlibreComponent, },// revisar inv de tallas, hacer cambio validación tallas
   { path: 'carrera/login', component: LogincarreraComponent, },
   { path: 'carrera/login/inicio', component: IniciocarreraComponent, canActivate:[CarreraGuard] },
 
