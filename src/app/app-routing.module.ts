@@ -28,7 +28,7 @@ import { AdministradorGuard } from './servicios/guardas/administrador.guard';
 import { CarreraGuard } from './servicios/guardas/carrera.guard';
 import { CiudadelaGuard } from './servicios/guardas/ciudadela.guard';
 import { TerminoscarreraComponent } from './componentes/carrera/terminoscarrera/terminoscarrera.component';
-
+import { NosotrosComponent } from './componentes/principales/nosotros/nosotros.component';
 
 
 
@@ -36,8 +36,9 @@ import { TerminoscarreraComponent } from './componentes/carrera/terminoscarrera/
 const routes: Routes = [
 
   //INICIO
-
-  { path: '', component: InicioComponent, },
+  { path: '', redirectTo: '/inicio', pathMatch: 'full'},
+  { path: 'inicio', component: InicioComponent, },
+  { path: 'nosotros', component: NosotrosComponent, },
   { path: 'contacto', component: ContactoComponent, },
 
 
@@ -50,9 +51,9 @@ const routes: Routes = [
   //CARRERA
   { path: 'carrera', component: CarreraComponent, },
   { path: 'carrera/validacion', component: CarreravalidarComponent, },
-  { path: 'carrera/inscribirdiciembre', component: CarreraregistrarcodigoComponent, },
+  { path: 'eventos/runcentro/codigos', component: CarreraregistrarcodigoComponent, },// revisar inv de tallas, hacer cambio validación tallas y cambiar routing
   { path: 'carrera/terminos', component: TerminoscarreraComponent, },
-  { path: 'carrera/inscribir', component: CarreraregistrarlibreComponent, },
+  { path: 'carrera/inscribir', component: CarreraregistrarlibreComponent, },// revisar inv de tallas, hacer cambio validación tallas
   { path: 'carrera/login', component: LogincarreraComponent, },
   { path: 'carrera/login/inicio', component: IniciocarreraComponent, canActivate:[CarreraGuard] },
 
@@ -83,10 +84,9 @@ const routes: Routes = [
 
 
 
-  
 
-  { path: '', pathMatch: 'full', redirectTo: '' },
-  { path: '**', redirectTo: '', pathMatch: 'full' },
+
+  { path: '**', redirectTo: '/inicio', pathMatch: 'full' },
 ];
 
 @NgModule({

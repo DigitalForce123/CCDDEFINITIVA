@@ -14,8 +14,8 @@ export class CarreraService {
   respuesta = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
-  //hosteo = 'http://localhost:3306/'
-  hosteo = 'https://ciudadela08-be186678fb78.herokuapp.com/'
+  hosteo = 'http://localhost:3306/'
+  // hosteo = 'https://ciudadela08-be186678fb78.herokuapp.com/'
 
   constructor(private httpClient: HttpClient) { }
 
@@ -37,7 +37,7 @@ export class CarreraService {
       this.respuesta
     );
   }
-  
+
 
   public ValidarCarrera(data: UsuarioDto): Observable<boolean> {
     return this.httpClient.post<any>(
