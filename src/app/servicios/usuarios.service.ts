@@ -14,7 +14,8 @@ export class UsuariosService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
   //hosteo = 'http://localhost:3306/'
-  hosteo = 'https://ciudadela08-be186678fb78.herokuapp.com/'
+  hosteo = 'https://runcentro5k-8a878a909cf8.herokuapp.com/'
+
   Usuario: any
   private _isLoggedciudadela$ = new BehaviorSubject<boolean>(false);
   private _isLoggedcarrera$ = new BehaviorSubject<boolean>(false);

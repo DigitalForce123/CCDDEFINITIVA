@@ -8,10 +8,10 @@ import { Component } from '@angular/core';
 export class InicioComponent {
   terminoBusqueda: string = '';
   eventosOriginales = [
-    { image: 'assets/membrete.jpg', title: 'Concierto en Vivo', description: 'Disfruta de la mejor música en vivo este fin de semana.' },
-    { image: 'assets/membrete.jpg', title: 'Exposición de Arte', description: 'Sumérgete en el mundo del arte moderno y clásico.' },
-    { image: 'assets/membrete.jpg', title: 'Conferencia Tecnológica', description: 'Aprende sobre las últimas innovaciones tecnológicas.' },
-    { image: 'assets/membrete.jpg', title: 'Conferencia Tecnológica', description: 'Aprende sobre las últimas innovaciones tecnológicas.' },
+    { image: 'assets/fondo.png', title: 'Carreras Deportivas', description: 'Disfruta de las carreras al maximo nivel .' },
+    { image: 'assets/fondo3.png', title: 'Run Centro 5K', description: 'Disfruta de las carreras al maximo nivel.' },
+    { image: 'assets/fondo4.png', title: 'Carreras Recreativas', description: 'Disfruta de las carreras al maximo nivel.' },
+    { image: 'assets/fondo5.png', title: 'Carreras', description: 'Disfruta de las carreras al maximo nivel.' },
   ];
 
   currentIndex = 0;

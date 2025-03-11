@@ -144,31 +144,16 @@ export class CarreraregistrarlibreComponent {
     const pdfDefinition: any = {
       background: [
         {
-          image: await this.getBase64ImageFromURL("../../assets/membrete.jpg"),
+          image: await this.getBase64ImageFromURL("../../assets/membrete.png"),
           width: 600,
           height: 850,
           opacity: 1,
         }
       ],
       content: [
-        { text: 'Registro Exitoso Carrera CICLOVIDA RUN 7K 40 AÑOS', fontSize: 27, bold: true, margin: [0, 300, 0, 0] },
-
-        { text: 'Datos Del Participante:', fontSize: 20, bold: true, margin: [0, 10, 0, 10] },
-        {
-          style: 'tableExample',
-          table: {
-            headerRows: 0,
-            body: [
-              [{ text: 'Nombre del Participante:', style: 'tableHeader', bold: true }, this.pdfnombremenor],
-              [{ text: 'Código unico de registro: ', style: 'tableHeader', bold: true }, this.l],
-
-
-            ]
-          },
-          layout: 'lightHorizontalLines',
-          margin: [0, 10, 0, 20],
-          fontSize: 15
-        },
+        
+        { text: this.pdfnombremenor, style: 'tableHeader', bold: true, margin: [250, 345, 0, 0] },
+        { text: this.l, style: 'tableHeader', bold: true, margin: [250, 23, 0, 0] },
 
 
 
