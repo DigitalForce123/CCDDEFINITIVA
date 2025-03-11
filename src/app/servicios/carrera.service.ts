@@ -23,7 +23,7 @@ export class CarreraService {
   public createUserCarrera(data: UsuarioDto): Observable<boolean> {
 
     return this.httpClient.post<any>(
-      this.hosteo + 'caliciudaddeportiva/createUserCarrera ',
+      this.hosteo + 'Solicitud/createUserCiudadelaCodigo',
       data,
       this.respuesta
     );
@@ -32,7 +32,7 @@ export class CarreraService {
   public createUserCarrera7k(data: UsuarioDto): Observable<boolean> {
 
     return this.httpClient.post<any>(
-      this.hosteo + 'caliciudaddeportiva/createUserCarrera7k ',
+      this.hosteo + 'Solicitud/createUserCiudadela',
       data,
       this.respuesta
     );
@@ -41,7 +41,7 @@ export class CarreraService {
 
   public ValidarCarrera(data: UsuarioDto): Observable<boolean> {
     return this.httpClient.post<any>(
-      this.hosteo + 'caliciudaddeportiva/ValidarCarrera',
+      this.hosteo + 'Solicitud/ValidarCarrera',
       data,
       this.respuesta
     );
@@ -50,7 +50,7 @@ export class CarreraService {
 
   public GetCupoRegalo(data: UsuarioDto): Observable<any> {
     return this.httpClient.post<UsuarioDto[]>(
-      this.hosteo + 'caliciudaddeportiva/GetCupoRegalo',
+      this.hosteo + 'Solicitud/GetCupoRegalo',
       data,
       this.respuesta,
 
@@ -60,7 +60,7 @@ export class CarreraService {
   public createcarrera(data: RegaloDto): Observable<boolean> {
 
     return this.httpClient.post<any>(
-      this.hosteo + 'caliciudaddeportiva/createcarrera',
+      this.hosteo + 'Solicitud/createcarrera',
       data,
       this.respuesta
     );

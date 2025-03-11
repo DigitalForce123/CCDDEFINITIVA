@@ -15,10 +15,10 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
   styleUrls: ['./carreraregistrarcodigo.component.css']
 })
 export class CarreraregistrarcodigoComponent {
-
+  isLoading: boolean = false; // booleano para detectar cuándo salta el loading
 
   usuarioDto: UsuarioDto[] = [];
-  nuevoUsuario: UsuarioDto = { variable1: '', variable2: '', variable3: '', variable4: '', variable5: '', variable6: '', variable7: '', variable8: '', variable9: '', variable10: '', variable11: '', variable12: '', variable13: '', variable14: '', variable15: '', variable16: 'pendiente', evento: 'carreralibre', };
+  nuevoUsuario: UsuarioDto = { variable1: '', variable2: '', variable3: '', variable4: '', variable5: '', variable6: '', variable7: '', variable8: '', variable9: '', variable10: '', variable11: '', variable12: '', variable13: '', variable14: '', variable15: '', variable16: 'pendiente', evento: 'ciudadela', };
   terminos = ""
   terminosprincipal = ""
   pdfnombremenor = ""
@@ -225,21 +225,21 @@ export class CarreraregistrarcodigoComponent {
 
       Swal.fire('El Celular debe ser diligenciado')
 
-    } else if (this.nuevoUsuario.variable6?.length != 10) {
+    } /* else if (this.nuevoUsuario.variable6?.length != 10) {
 
       Swal.fire('El célular debe ser de 10 digitos')
 
 
 
-    } else if (this.nuevoUsuario.variable7 == "") {
+    } */ else if (this.nuevoUsuario.variable7 == "") {
 
       Swal.fire('Correo electrónico no diligenciado')
 
-    } else if (validEmail.test(this.nuevoUsuario.variable7) == false) {
+    } /* else if (validEmail.test(this.nuevoUsuario.variable7) == false) {
 
       Swal.fire('Por favor diligenciar un correo valido. Ejemplo: caliciudaddeportiva@gmail.com')
 
-    } else if (String(this.seleccionarDepartamento) == "") {
+    } */ else if (String(this.seleccionarDepartamento) == "") {
       Swal.fire('El departamento debe ser diligenciado ')
 
     } else if (String(this.seleccionarCiudad).length > 500) {
@@ -292,9 +292,11 @@ export class CarreraregistrarcodigoComponent {
 
 
     else {
+      this.isLoading = true;
       console.log(this.nuevoUsuario)
       this.carreraService.createUserCarrera7k(this.nuevoUsuario).subscribe(
         (data: any) => {
+          this.isLoading = false;
           if (data.status == 200) {
             Swal.fire('Felicidades ya se encuentran participando en el evento con numero de registro: ' + this.x)
             this.l = String(this.x)
