@@ -289,7 +289,7 @@
         </div>
 
 
-        <div class="form-floating mb-3">
+<!--         <div class="form-floating mb-3">
             <select class="form-select fondo1" aria-label="Default select example" [(ngModel)]="nuevoUsuario.variable11"
                 id="variable4" placeholder="variable4" name="variable4">
 
@@ -311,8 +311,23 @@
             </select>
             <label for="floatingInput">Talla de camisa
             </label>
-        </div>
-
+        </div> -->
+        <div class="form-floating mb-3">
+          <select
+              class="form-select fondo1"
+              aria-label="Default select example"
+              [(ngModel)]="nuevoUsuario.variable11"
+              id="variable4"
+              placeholder="variable4"
+              name="variable4"
+          >
+              <option value="" disabled selected>Seleccione una talla</option>
+              <option *ngFor="let talla of tallasDisponibles" [value]="talla.nombre">
+                  {{ talla.nombre }}
+              </option>
+          </select>
+          <label for="floatingInput">Talla de camisa</label>
+      </div>
 
         <div class="form-floating mb-3">
             <select class="form-select fondo1" aria-label="Default select example" [(ngModel)]="discapacidad"

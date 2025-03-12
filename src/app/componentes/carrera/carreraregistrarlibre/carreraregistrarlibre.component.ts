@@ -77,6 +77,7 @@ export class CarreraregistrarlibreComponent {
   public departamentos: DepartamentoI[] = [];
   public seleccionarCiudad: DepartamentoI = { id: 0, name: '' };
   public ciudades: CiudadI[] = [];
+  public tallasDisponibles: { nombre: string; cantidadDisponible: number }[] = [];
 
 
   constructor(
@@ -85,6 +86,16 @@ export class CarreraregistrarlibreComponent {
   ngOnInit(): void {
     this.departamentos = this.departamentosService.getDepartamentos();
     this.ciudades = this.departamentosService.getCiudades();
+    this.carreraService.getTallasDisponibles().subscribe(
+          (response) => {
+            this.tallasDisponibles = this.tallasDisponibles = response.payload; // Asigna solo el array del payload
+            console.log("tallas:", this.tallasDisponibles)
+          },
+          (error) => {
+            console.error('Error al obtener las tallas disponibles:', error);
+            Swal.fire('Error', 'No se pudieron cargar las tallas disponibles', 'error');
+          }
+        );
   }
   onSelect(usarName: number): void {
     this.ciudades = this.departamentosService.getCiudades().filter(item => item.departamentoId == usarName);
@@ -151,7 +162,7 @@ export class CarreraregistrarlibreComponent {
         }
       ],
       content: [
-        
+
         { text: this.pdfnombremenor, style: 'tableHeader', bold: true, margin: [250, 345, 0, 0] },
         { text: this.l, style: 'tableHeader', bold: true, margin: [250, 23, 0, 0] },
 
@@ -293,6 +304,16 @@ export class CarreraregistrarlibreComponent {
             Swal.fire('Felicidades ya se encuentran participando en el evento con numero de registro: ' + this.x)
             this.l= String(this.x)
             this.createPdf()
+            this.carreraService.getTallasDisponibles().subscribe(
+              (response) => {
+                this.tallasDisponibles = this.tallasDisponibles = response.payload; // Asigna solo el array del payload
+                console.log("tallas:", this.tallasDisponibles)
+              },
+              (error) => {
+                console.error('Error al obtener las tallas disponibles:', error);
+                Swal.fire('Error', 'No se pudieron cargar las tallas disponibles', 'error');
+              }
+            );
             this.nuevoUsuario.variable1 = ""
             this.nuevoUsuario.variable2 = ""
             this.nuevoUsuario.variable3 = ""
@@ -331,7 +352,17 @@ export class CarreraregistrarlibreComponent {
           } else {
 
             Swal.fire(data.payload.message)
-
+            this.nuevoUsuario.variable11 = ""
+            this.carreraService.getTallasDisponibles().subscribe(
+              (response) => {
+                this.tallasDisponibles = this.tallasDisponibles = response.payload; // Asigna solo el array del payload
+                console.log("tallas:", this.tallasDisponibles)
+                },
+              (error) => {
+                  console.error('Error al obtener las tallas disponibles:', error);
+                  Swal.fire('Error', 'No se pudieron cargar las tallas disponibles', 'error');
+                }
+              );
             this.formulariomenor = true
             this.formulariomayor = false
             this.variablemenorvar = false;
@@ -339,6 +370,17 @@ export class CarreraregistrarlibreComponent {
           }
         }, (error) => {
           console.log(error);
+          this.nuevoUsuario.variable11 = ""
+          this.carreraService.getTallasDisponibles().subscribe(
+            (response) => {
+              this.tallasDisponibles = this.tallasDisponibles = response.payload; // Asigna solo el array del payload
+              console.log("tallas:", this.tallasDisponibles)
+            },
+            (error) => {
+              console.error('Error al obtener las tallas disponibles:', error);
+              Swal.fire('Error', 'No se pudieron cargar las tallas disponibles', 'error');
+            }
+          );
           Swal.fire('error al intentar registrate por favor intentalo mas tarde')
           this.formulariomenor = true
           this.formulariomayor = false

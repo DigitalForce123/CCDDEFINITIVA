@@ -4,7 +4,11 @@ import { UsuarioDto } from '../modelos/usuario-dto';
 import { CodigoDto } from '../modelos/codigo-dto';
 import { RegaloDto } from '../modelos/regalo-dto';
 import { Observable } from 'rxjs';
-
+// Definición de la interfaz
+interface TallaResponse {
+  status: number;
+  payload: { nombre: string; cantidadDisponible: number }[];
+}
 
 @Injectable({
   providedIn: 'root'
@@ -62,6 +66,13 @@ export class CarreraService {
     return this.httpClient.post<any>(
       this.hosteo + 'Solicitud/createcarrera',
       data,
+      this.respuesta
+    );
+  }
+
+  public getTallasDisponibles(): Observable<TallaResponse> {
+    return this.httpClient.get<TallaResponse>(
+      this.hosteo + 'Solicitud/GetTallasDisponibles',
       this.respuesta
     );
   }
