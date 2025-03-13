@@ -89,7 +89,6 @@ export class CarreraregistrarlibreComponent {
     this.carreraService.getTallasDisponibles().subscribe(
           (response) => {
             this.tallasDisponibles = this.tallasDisponibles = response.payload; // Asigna solo el array del payload
-            console.log("tallas:", this.tallasDisponibles)
           },
           (error) => {
             console.error('Error al obtener las tallas disponibles:', error);
