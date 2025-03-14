@@ -24,7 +24,7 @@ export class IniciocarreraComponent  implements OnInit {
 
 
 
-  nuevoUsuario: UsuarioDto = { variable1: '', variable2: '', variable3: '', variable4: '', variable5: '', variable6: '', variable7: '', variable8: '', variable9: '', variable10: '', variable11: '', variable12: '', variable13: '', variable14: '', variable15: '', variable16: '', evento: 'carreramujerbene', };
+  nuevoUsuario: UsuarioDto = { variable1: '', variable2: '', variable3: '', variable4: '', variable5: '', variable6: '', variable7: '', variable8: '', variable9: '', variable10: '', variable11: '', variable12: '', variable13: '', variable14: '', variable15: '', variable16: '', evento: 'carrera5k', };
 
   nuevoregalo: RegaloDto = {  codigoregalo: '', idusuariofin: '', idadminfin: '', numero: '' };
   numero1 = ""
@@ -108,14 +108,13 @@ export class IniciocarreraComponent  implements OnInit {
 
   public validarnumero(group: UsuarioDto) {
     this.nuevoregalo.numero=this.numero1
-    this.nuevoregalo.idadminfin = this.sesion
-    this.nuevoregalo.idusuariofin = group.variable1 
-    this.nuevoregalo.codigoregalo = group.evento+" "+group.variable2 
+    this.nuevoregalo.idadminfin = 'carrera'
+    this.nuevoregalo.idusuariofin = group.variable1
+    this.nuevoregalo.codigoregalo = group.evento+" "+group.variable2
     console.log(this.nuevoregalo)
 
     this.carreraService.createcarrera(this.nuevoregalo).subscribe(
       (data: any) => {
-
 
         if (data.status == 200) {
 
@@ -144,7 +143,7 @@ export class IniciocarreraComponent  implements OnInit {
 
 }
 
-  
+
 
 
 

@@ -18,7 +18,7 @@ export class CarreraService {
   respuesta = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
-  //hosteo = 'http://localhost:3306/'
+  // hosteo = 'http://localhost:3306/'
   hosteo = 'https://runcentro-970219e13e88.herokuapp.com/'
 
   constructor(private httpClient: HttpClient) { }

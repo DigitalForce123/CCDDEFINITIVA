@@ -13,8 +13,8 @@ export class UsuariosService {
   respuesta = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
-  //hosteo = 'http://localhost:3306/'
-  hosteo = 'https://runcentro5k-8a878a909cf8.herokuapp.com/'
+  // hosteo = 'http://localhost:3306/'
+  hosteo = 'https://runcentro-970219e13e88.herokuapp.com/'
 
   Usuario: any
   private _isLoggedciudadela$ = new BehaviorSubject<boolean>(false);
@@ -30,9 +30,9 @@ export class UsuariosService {
 
 
 
-  constructor(private httpClient: HttpClient) 
-  
-  
+  constructor(private httpClient: HttpClient)
+
+
   {
     const token = localStorage.getItem('ciudadelalogin');
     const token1 = localStorage.getItem('carreralogin');
@@ -59,7 +59,7 @@ export class UsuariosService {
     console.log(data)
 
     return this.httpClient.post<any>(
-      this.hosteo + 'caliciudaddeportiva/loginciudadela',
+      this.hosteo + 'Solicitud/loginciudadela',
       data,
       this.respuesta
     );
@@ -79,7 +79,7 @@ export class UsuariosService {
     console.log(data)
 
     return this.httpClient.post<any>(
-      this.hosteo + 'caliciudaddeportiva/logincarrera',
+      this.hosteo + 'Solicitud/logincarrera',
       data,
       this.respuesta
     );
@@ -98,7 +98,7 @@ export class UsuariosService {
     console.log(data)
 
     return this.httpClient.post<any>(
-      this.hosteo + 'caliciudaddeportiva/loginadministrador',
+      this.hosteo + 'Solicitud/loginadministrador',
       data,
       this.respuesta
     );

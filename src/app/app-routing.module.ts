@@ -49,9 +49,9 @@ const routes: Routes = [
 
 
   //CARRERA
-  { path: 'eventos/runcentro/inscribirjueves', component: CarreraregistrarcodigoComponent, },// revisar inv de tallas, hacer cambio validación tallas y cambiar routing
+  { path: 'eventos/runcentro/inscribirusuarios', component: CarreraregistrarcodigoComponent, },// revisar inv de tallas, hacer cambio validación tallas y cambiar routing
   { path: 'carrera/terminos', component: TerminoscarreraComponent, },
-  { path: 'eventos/runcentro/codigos', component: CarreraregistrarlibreComponent, },// revisar inv de tallas, hacer cambio validación tallas
+  { path: 'eventos/runcentro/registrocodigos', component: CarreraregistrarlibreComponent, },// revisar inv de tallas, hacer cambio validación tallas
   { path: 'carrera/login', component: LogincarreraComponent, },
   { path: 'carrera/login/inicio', component: IniciocarreraComponent, canActivate:[CarreraGuard] },
 
@@ -68,7 +68,7 @@ const routes: Routes = [
 
 
   //VALIDADORES
-
+  { path: 'carrera/inicio', component: IniciocarreraComponent },
 
 
 
