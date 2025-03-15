@@ -49,7 +49,7 @@ const routes: Routes = [
 
 
   //CARRERA
-  { path: 'eventos/runcentro/inscribirlibres', component: CarreraregistrarcodigoComponent, },// revisar inv de tallas, hacer cambio validación tallas y cambiar routing
+  { path: 'e', component: CarreraregistrarcodigoComponent, },// revisar inv de tallas, hacer cambio validación tallas y cambiar routing
   { path: 'carrera/terminos', component: TerminoscarreraComponent, },
   { path: 'eventos/runcentro/codigos', component: CarreraregistrarlibreComponent, },// revisar inv de tallas, hacer cambio validación tallas
   { path: 'carrera/login', component: LogincarreraComponent, },
