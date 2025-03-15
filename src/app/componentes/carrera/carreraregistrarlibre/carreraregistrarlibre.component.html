@@ -287,32 +287,22 @@
             </label>
 
         </div>
-
-
         <div class="form-floating mb-3">
-            <select class="form-select fondo1" aria-label="Default select example" [(ngModel)]="nuevoUsuario.variable11"
-                id="variable4" placeholder="variable4" name="variable4">
-
-                <option value="S">S</option>
-                <option value="M">M
-                </option>
-                <option value="L">L
-                </option>
-                <option value="XL">XL
-                </option>
-                <option value="XXL">XXL
-                </option>
-
-
-
-
-
-
-            </select>
-            <label for="floatingInput">Talla de camisa
-            </label>
-        </div>
-
+          <select
+              class="form-select fondo1"
+              aria-label="Default select example"
+              [(ngModel)]="nuevoUsuario.variable11"
+              id="variable4"
+              placeholder="variable4"
+              name="variable4"
+          >
+              <option value="" disabled selected>Seleccione una talla</option>
+              <option *ngFor="let talla of tallasDisponibles" [value]="talla.nombre">
+                  {{ talla.nombre }}
+              </option>
+          </select>
+          <label for="floatingInput">Talla de camisa</label>
+      </div>
 
         <div class="form-floating mb-3">
             <select class="form-select fondo1" aria-label="Default select example" [(ngModel)]="discapacidad"
@@ -410,7 +400,7 @@
 
         <div class="checkbox mb-3 ">
             <label>
-                <a href="https://drive.google.com/file/d/1DFqwUAB3DatPw0VU2gJV06MgwfrkRRlu/view?usp=drive_link" >Consideraciones y reglas de la carrera
+                <a href="https://drive.google.com/file/d/1bNV51XGjftwUlo8L9V5PJ4SgPBfMHOIp/view?usp=sharing" >Consideraciones y reglas de la carrera
                     atletico recreativa</a>
                 <br>
                 <input type="checkbox" [(ngModel)]="terminos" value="terminos" name="terminos" id="terminos">
@@ -451,8 +441,8 @@
 <br>
 
 
-<!--
 
+<!--
 <div class="container my-5 ">
     <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg fondo">
 
@@ -467,7 +457,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
--->
+
 <app-footerp></app-footerp>

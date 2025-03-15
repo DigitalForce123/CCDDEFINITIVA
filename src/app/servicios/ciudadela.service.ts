@@ -25,7 +25,7 @@ export class CiudadelaService {
   
   public getAllUser(): Observable < any > {
     return this.httpClient.get<UsuarioDto[]>(
-      this.hosteo + 'caliciudaddeportiva/getAllUser',
+      this.hosteo + 'Solicitud/getAllUser',
       this.respuesta,
   
     );
@@ -37,7 +37,7 @@ export class CiudadelaService {
   public createUserCiudadela(data: UsuarioDto): Observable<boolean> {
 
     return this.httpClient.post<any>(
-      this.hosteo + 'caliciudaddeportiva/createUserCiudadela ',
+      this.hosteo + 'Solicitud/createUserCiudadela ',
       data,
       this.respuesta
     );
@@ -45,7 +45,7 @@ export class CiudadelaService {
 
   public ValidarMenor(data: UsuarioDto): Observable<boolean> {
     return this.httpClient.post<any>(
-      this.hosteo + 'caliciudaddeportiva/ValidarMenor',
+      this.hosteo + 'Solicitud/ValidarMenor',
       data,
       this.respuesta
     );

@@ -4,7 +4,11 @@ import { UsuarioDto } from '../modelos/usuario-dto';
 import { CodigoDto } from '../modelos/codigo-dto';
 import { RegaloDto } from '../modelos/regalo-dto';
 import { Observable } from 'rxjs';
-
+// Definición de la interfaz
+interface TallaResponse {
+  status: number;
+  payload: { nombre: string; cantidadDisponible: number }[];
+}
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +18,8 @@ export class CarreraService {
   respuesta = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
-  //hosteo = 'http://localhost:3306/'
-  hosteo = 'https://runcentro5k-8a878a909cf8.herokuapp.com/'
+  // hosteo = 'http://localhost:3306/'
+  hosteo = 'https://runcentro-970219e13e88.herokuapp.com/'
 
   constructor(private httpClient: HttpClient) { }
 
@@ -62,6 +66,13 @@ export class CarreraService {
     return this.httpClient.post<any>(
       this.hosteo + 'Solicitud/createcarrera',
       data,
+      this.respuesta
+    );
+  }
+
+  public getTallasDisponibles(): Observable<TallaResponse> {
+    return this.httpClient.get<TallaResponse>(
+      this.hosteo + 'Solicitud/GetTallasDisponibles',
       this.respuesta
     );
   }

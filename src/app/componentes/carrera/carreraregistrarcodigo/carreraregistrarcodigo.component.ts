@@ -9,11 +9,13 @@ import Swal from 'sweetalert2'
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
+// Definición de la interfaz
 @Component({
   selector: 'app-carreraregistrarcodigo',
   templateUrl: './carreraregistrarcodigo.component.html',
   styleUrls: ['./carreraregistrarcodigo.component.css']
 })
+
 export class CarreraregistrarcodigoComponent {
   isLoading: boolean = false; // booleano para detectar cuándo salta el loading
 
@@ -75,7 +77,7 @@ export class CarreraregistrarcodigoComponent {
   public departamentos: DepartamentoI[] = [];
   public seleccionarCiudad: DepartamentoI = { id: 0, name: '' };
   public ciudades: CiudadI[] = [];
-
+  public tallasDisponibles: { nombre: string; cantidadDisponible: number }[] = [];
 
   constructor(
     private carreraService: CarreraService, private departamentosService: DepartamentosService) { }
@@ -83,6 +85,15 @@ export class CarreraregistrarcodigoComponent {
   ngOnInit(): void {
     this.departamentos = this.departamentosService.getDepartamentos();
     this.ciudades = this.departamentosService.getCiudades();
+    this.carreraService.getTallasDisponibles().subscribe(
+      (response) => {
+        this.tallasDisponibles = this.tallasDisponibles = response.payload; // Asigna solo el array del payload
+      },
+      (error) => {
+        console.error('Error al obtener las tallas disponibles:', error);
+        Swal.fire('Error', 'No se pudieron cargar las tallas disponibles', 'error');
+      }
+    );
   }
   onSelect(usarName: number): void {
     this.ciudades = this.departamentosService.getCiudades().filter(item => item.departamentoId == usarName);
@@ -286,6 +297,16 @@ export class CarreraregistrarcodigoComponent {
             Swal.fire('Felicidades ya se encuentran participando en el evento con numero de registro: ' + this.x)
             this.l = String(this.x)
             this.createPdf()
+            this.carreraService.getTallasDisponibles().subscribe(
+              (response) => {
+                this.tallasDisponibles = this.tallasDisponibles = response.payload; // Asigna solo el array del payload
+                console.log("tallas:", this.tallasDisponibles)
+              },
+              (error) => {
+                console.error('Error al obtener las tallas disponibles:', error);
+                Swal.fire('Error', 'No se pudieron cargar las tallas disponibles', 'error');
+              }
+            );
             this.nuevoUsuario.variable1 = ""
             this.nuevoUsuario.variable2 = ""
             this.nuevoUsuario.variable3 = ""
@@ -320,11 +341,20 @@ export class CarreraregistrarcodigoComponent {
             this.x = Math.floor(Math.random() * (this.max - this.min + 1) + this.min);
             this.variablemenorvar = false;
 
-
           } else {
 
             Swal.fire(data.payload.message)
-
+            this.nuevoUsuario.variable11 = ""
+            this.carreraService.getTallasDisponibles().subscribe(
+              (response) => {
+                this.tallasDisponibles = this.tallasDisponibles = response.payload; // Asigna solo el array del payload
+                console.log("tallas:", this.tallasDisponibles)
+              },
+              (error) => {
+                console.error('Error al obtener las tallas disponibles:', error);
+                Swal.fire('Error', 'No se pudieron cargar las tallas disponibles', 'error');
+              }
+            );
             this.formulariomenor = true
             this.formulariomayor = false
             this.variablemenorvar = false;
@@ -332,6 +362,17 @@ export class CarreraregistrarcodigoComponent {
           }
         }, (error) => {
           console.log(error);
+          this.nuevoUsuario.variable11 = ""
+          this.carreraService.getTallasDisponibles().subscribe(
+            (response) => {
+              this.tallasDisponibles = this.tallasDisponibles = response.payload; // Asigna solo el array del payload
+              console.log("tallas:", this.tallasDisponibles)
+            },
+            (error) => {
+              console.error('Error al obtener las tallas disponibles:', error);
+              Swal.fire('Error', 'No se pudieron cargar las tallas disponibles', 'error');
+            }
+          );
           Swal.fire('error al intentar registrate por favor intentalo mas tarde')
           this.formulariomenor = true
           this.formulariomayor = false
