@@ -16,18 +16,18 @@ export class CiudadelaService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
   //hosteo = 'http://localhost:3306/'
-  hosteo = 'https://runcentro5k-8a878a909cf8.herokuapp.com/'
+  hosteo = 'https://runcentro-970219e13e88.herokuapp.com/'
 
 
   constructor(private httpClient: HttpClient) { }
 
 
-  
+
   public getAllUser(): Observable < any > {
     return this.httpClient.get<UsuarioDto[]>(
-      this.hosteo + 'caliciudaddeportiva/getAllUser',
+      this.hosteo + 'Solicitud/getAllUser',
       this.respuesta,
-  
+
     );
   }
 
@@ -37,7 +37,7 @@ export class CiudadelaService {
   public createUserCiudadela(data: UsuarioDto): Observable<boolean> {
 
     return this.httpClient.post<any>(
-      this.hosteo + 'caliciudaddeportiva/createUserCiudadela ',
+      this.hosteo + 'Solicitud/createUserCiudadela ',
       data,
       this.respuesta
     );
@@ -45,7 +45,7 @@ export class CiudadelaService {
 
   public ValidarMenor(data: UsuarioDto): Observable<boolean> {
     return this.httpClient.post<any>(
-      this.hosteo + 'caliciudaddeportiva/ValidarMenor',
+      this.hosteo + 'Solicitud/ValidarMenor',
       data,
       this.respuesta
     );
@@ -55,7 +55,7 @@ export class CiudadelaService {
   public entregarregalo(data: UsuarioDto): Observable<boolean> {
 
     return this.httpClient.post<any>(
-      this.hosteo + 'caliciudaddeportiva/entregaregalo',
+      this.hosteo + 'Solicitud/entregaregalo',
       data,
       this.respuesta
 
@@ -64,7 +64,7 @@ export class CiudadelaService {
 
   public buscarultimoregistroregalo(data: RegaloDto): Observable<any> {
     return this.httpClient.post<any>(
-      this.hosteo + 'caliciudaddeportiva/buscarultimoregistroregalo',
+      this.hosteo + 'Solicitud/buscarultimoregistroregalo',
       data,
       this.respuesta,
     );
@@ -74,7 +74,7 @@ export class CiudadelaService {
   public createregalo(data: RegaloDto): Observable<boolean> {
 
     return this.httpClient.post<any>(
-      this.hosteo + 'caliciudaddeportiva/createregalo',
+      this.hosteo + 'Solicitud/createregalo',
       data,
       this.respuesta
     );
@@ -82,7 +82,7 @@ export class CiudadelaService {
 
   public GetRegalopersona(data: UsuarioDto): Observable<any> {
     return this.httpClient.post<UsuarioDto[]>(
-      this.hosteo + 'caliciudaddeportiva/GetRegalopersona',
+      this.hosteo + 'Solicitud/GetRegalopersona',
       data,
       this.respuesta,
 
@@ -91,7 +91,7 @@ export class CiudadelaService {
 
   public GetRegalopersonamenor(data: UsuarioDto): Observable<any> {
     return this.httpClient.post<UsuarioDto[]>(
-      this.hosteo + 'caliciudaddeportiva/GetRegalopersonamenor',
+      this.hosteo + 'Solicitud/GetRegalopersonamenor',
       data,
       this.respuesta,
 

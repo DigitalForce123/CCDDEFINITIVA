@@ -304,7 +304,6 @@ export class CarreraregistrarcodigoComponent {
               },
               (error) => {
                 console.error('Error al obtener las tallas disponibles:', error);
-                Swal.fire('Error', 'No se pudieron cargar las tallas disponibles', 'error');
               }
             );
             this.nuevoUsuario.variable1 = ""
