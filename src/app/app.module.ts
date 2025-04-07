@@ -1,12 +1,12 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { DataTablesModule } from "angular-datatables";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
+import localeEs from '@angular/common/locales/es';
 
 
 import { InicioComponent } from './componentes/principales/inicio/inicio.component';
@@ -36,9 +36,11 @@ import { BaloncestoComponent } from './componentes/baloncesto/baloncesto/balonce
 import { ContactoComponent } from './componentes/principales/contacto/contacto.component';
 import { TerminoscarreraComponent } from './componentes/carrera/terminoscarrera/terminoscarrera.component';
 import { NosotrosComponent } from './componentes/principales/nosotros/nosotros.component';
+import { DetalleEventoComponent } from './componentes/principales/eventos/detalle-evento.component';
+import { SafePipe } from './safe.pipe';
 
 
-
+registerLocaleData(localeEs);
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,6 +71,8 @@ import { NosotrosComponent } from './componentes/principales/nosotros/nosotros.c
     ContactoComponent,
     TerminoscarreraComponent,
     NosotrosComponent,
+    DetalleEventoComponent,
+    SafePipe, // Descomentar si es necesario
 
   ],
   imports: [
@@ -78,9 +82,11 @@ import { NosotrosComponent } from './componentes/principales/nosotros/nosotros.c
     CommonModule,
     HttpClientModule,
     DataTablesModule
-    
+
   ],
-  providers: [],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'es' }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

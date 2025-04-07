@@ -1,0 +1,133 @@
+<div class="event-wrapper">
+  <!-- Imagen principal -->
+  <div class="header-image" [ngStyle]="{ 'background-image': 'url(' + event?.headerImage + ')' }">
+    <div class="header-overlay">
+      <h1>{{ event?.name }}</h1>
+      <p><i class="fa-regular fa-calendar"></i> {{ event?.date | date: 'fullDate' }} - {{ event?.date | date: 'h:mm a' }}</p>
+    </div>
+  </div>
+
+  <!-- Contenido principal -->
+  <div class="event-details container">
+    <div class="card">
+      <div class="card-body">
+        <div class="event-info">
+          <img [src]="event?.thumbnailImage" class="thumbnail" alt="Evento" />
+
+          <div class="info-text">
+            <h2>{{ event?.name }}</h2>
+            <p class="event-date">
+              <i class="fa-regular fa-calendar-days"></i>
+              {{ event?.date | date: 'fullDate' }} - {{ event?.date | date: 'h:mm a' }}
+            </p>
+            <p>{{ event?.description }}</p>
+
+            <div class="payment-section">
+              <span><strong>Paga online:</strong></span>
+              <img src="assets/payments/pse.png" alt="PSE" />
+              <img src="assets/payments/visa.png" alt="Visa" />
+              <img src="assets/payments/mastercard.png" alt="Mastercard" />
+              <img src="assets/payments/amex.png" alt="Amex" />
+              <img src="assets/payments/efecty.png" alt="Efecty" class="efecty-icon" />
+            </div>
+
+            <button class="btn btn-primary mt-3" (click)="comprarETicket()">
+              <i class="fa-solid fa-ticket"></i> Comprar E-ticket
+            </button>
+          </div>
+        </div>
+
+        <hr />
+
+        <div class="event-meta">
+          <div>
+            <p><strong>Lugar:</strong> {{ event?.location }}</p>
+            <p><strong>Fecha:</strong> {{ event?.date | date: 'fullDate' }}</p>
+          </div>
+          <div class="map-button">
+            <button (click)="toggleMap()" class="toggle-map-button btn btn-primary mt-3">
+              {{ showMap ? 'Ocultar mapa' : 'Ver mapa' }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Contenedor del mapa -->
+<div *ngIf="showMap" class="map-container">
+  <iframe
+    [src]="safeMapUrl"
+    width="100%"
+    height="450"
+    style="border:0;"
+    allowfullscreen
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+  ></iframe>
+</div>
+
+<!-- Modal 1: Loader -->
+<div class="modal-backdrop" *ngIf="showLoader">
+  <div class="modal-content">
+    <div class="modal-center">
+      <h5>Cargando tickets disponibles...</h5>
+      <div class="spinner-border text-success" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal 2: Selección de tickets -->
+<div class="modal-backdrop" *ngIf="showTicketModal">
+  <div class="modal-content">
+    <div class="modal-center modal-tickets">
+      <h5>Selecciona tus Tickets</h5>
+      <div *ngFor="let ticket of availableTickets">
+        <div class="ticket-card">
+          <div>
+            <strong>{{ ticket.name }}</strong><br />
+            <span>${{ ticket.price | number }}</span>
+          </div>
+          <div class="quantity-controls">
+            <button (click)="decreaseQuantity(ticket)">-</button>
+            <span>{{ ticket.quantity || 0 }}</span>
+            <button (click)="increaseQuantity(ticket)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Resumen -->
+      <div class="ticket-summary mt-3">
+        <h6>Resumen:</h6>
+        <ul>
+          <li *ngFor="let t of selectedTickets">
+            {{ t.name }} x{{ t.quantity }}
+            <button class="btn btn-sm btn-danger" (click)="removeTicket(t)">Eliminar</button>
+          </li>
+        </ul>
+        <p><strong>Total:</strong> ${{ getTotal() | number }}</p>
+      </div>
+
+      <button class="btn btn-success mt-2" (click)="continuarConFormulario()">Continuar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 3: Formulario -->
+<div class="modal-backdrop" *ngIf="showFormModal">
+  <div class="modal-content">
+    <div class="modal-center">
+      <h5>Datos de los asistentes</h5>
+      <form *ngFor="let form of ticketForms; let i = index" class="ticket-form">
+        <h6>Asistente {{ i + 1 }}</h6>
+        <input type="text" placeholder="Nombre" class="form-control mb-2" />
+        <input type="text" placeholder="Correo electrónico" class="form-control mb-2" />
+        <!-- Agrega los campos que desees -->
+      </form>
+      <button class="btn btn-primary mt-2">Ir al Pago</button>
+    </div>
+  </div>
+</div>
