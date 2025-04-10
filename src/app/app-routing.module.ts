@@ -29,7 +29,7 @@ import { CarreraGuard } from './servicios/guardas/carrera.guard';
 import { CiudadelaGuard } from './servicios/guardas/ciudadela.guard';
 import { TerminoscarreraComponent } from './componentes/carrera/terminoscarrera/terminoscarrera.component';
 import { NosotrosComponent } from './componentes/principales/nosotros/nosotros.component';
-import { DetalleEventoComponent } from './componentes/principales/eventos/detalle-evento.component';
+
 
 
 
@@ -40,9 +40,6 @@ const routes: Routes = [
   { path: 'inicio', component: InicioComponent, },
   { path: 'nosotros', component: NosotrosComponent, },
   { path: 'contacto', component: ContactoComponent, },
-
-  // EVENTOS
-  { path: 'evento/:id', component: DetalleEventoComponent, },
 
 
 
