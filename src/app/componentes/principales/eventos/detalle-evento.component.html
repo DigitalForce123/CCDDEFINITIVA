@@ -84,6 +84,13 @@
 <div class="modal-backdrop" *ngIf="showTicketModal">
   <div class="modal-content">
     <div class="modal-center modal-tickets">
+      <!-- Indicador de pasos -->
+      <div class="step-indicator">
+        <div class="progress-line" [style.width]="progressWidth"></div>
+        <div class="step" [ngClass]="{ 'active': currentStep === 1 }">Tickets</div>
+        <div class="step" [ngClass]="{ 'active': currentStep === 2 }">Datos</div>
+        <div class="step" [ngClass]="{ 'active': currentStep === 3 }">Pago</div>
+      </div>
       <h5>Selecciona tus Tickets</h5>
       <div *ngFor="let ticket of availableTickets">
         <div class="ticket-card">
@@ -92,9 +99,9 @@
             <span>${{ ticket.price | number }}</span>
           </div>
           <div class="quantity-controls">
-            <button (click)="decreaseQuantity(ticket)">-</button>
+            <button style="background-color: red;" (click)="decreaseQuantity(ticket)">-</button>
             <span>{{ ticket.quantity || 0 }}</span>
-            <button (click)="increaseQuantity(ticket)">+</button>
+            <button style="background-color: green;" (click)="increaseQuantity(ticket)">+</button>
           </div>
         </div>
       </div>
@@ -111,7 +118,10 @@
         <p><strong>Total:</strong> ${{ getTotal() | number }}</p>
       </div>
 
-      <button class="btn btn-success mt-2" (click)="continuarConFormulario()">Continuar</button>
+      <div class="ticket-modal-actions">
+        <button class="btn btn-success mt-2" (click)="continuarConFormulario()">Continuar</button>
+        <button class="btn btn-cancel mt-2" (click)="showTicketModal = false">Cerrar</button>
+      </div>
     </div>
   </div>
 </div>
@@ -120,6 +130,13 @@
 <div class="modal-backdrop" *ngIf="showFormModal">
   <div class="modal-content">
     <div class="modal-center">
+      <!-- Indicador de pasos -->
+      <div class="step-indicator">
+        <div class="progress-line" [style.width]="progressWidth"></div>
+        <div class="step" [ngClass]="{ 'active': currentStep === 1 }">Tickets</div>
+        <div class="step" [ngClass]="{ 'active': currentStep === 2 }">Datos</div>
+        <div class="step" [ngClass]="{ 'active': currentStep === 3 }">Pago</div>
+      </div>
       <h5>Datos de los asistentes</h5>
       <form *ngFor="let form of ticketForms; let i = index" class="ticket-form">
         <h6>Asistente {{ i + 1 }}</h6>
@@ -127,7 +144,10 @@
         <input type="text" placeholder="Correo electrónico" class="form-control mb-2" />
         <!-- Agrega los campos que desees -->
       </form>
-      <button class="btn btn-primary mt-2">Ir al Pago</button>
+      <div class="d-flex justify-content-end gap-2 mt-3">
+        <button class="btn btn-secondary" (click)="volverASeleccion()">Volver</button>
+        <button class="btn btn-primary">Ir al Pago</button>
+      </div>
     </div>
   </div>
 </div>

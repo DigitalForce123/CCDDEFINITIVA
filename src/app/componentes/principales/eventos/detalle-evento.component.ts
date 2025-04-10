@@ -18,6 +18,8 @@ export class DetalleEventoComponent implements OnInit {
   showTicketModal = false;
   showFormModal = false;
 
+  currentStep = 1; // 1 = Tickets - 2 = Datos - 3 = Pago
+
   availableTickets = [
     { id: 1, name: 'Ascenso a la Torre de Cali', price: 75000, quantity: 0 },
     { id: 2, name: 'Chiquirun 2K', price: 75000, quantity: 0 }
@@ -56,6 +58,7 @@ export class DetalleEventoComponent implements OnInit {
     setTimeout(() => {
       this.showLoader = false;
       this.showTicketModal = true;
+      this.currentStep = 1;
     }, 1500); // 1.5 segundos de "carga"
   }
 
@@ -84,6 +87,17 @@ export class DetalleEventoComponent implements OnInit {
     return this.selectedTickets.reduce((sum, t) => sum + (t.price * t.quantity), 0);
   }
 
+  volverASeleccion() {
+    this.showFormModal = false;
+    this.showTicketModal = true;
+    this.currentStep = 1;
+  }
+
+  get progressWidth(): string {
+    const totalSteps = 3;
+    return ((this.currentStep - 1) / (totalSteps - 1)) * 100 + '%';
+  }
+
   continuarConFormulario() {
     this.ticketForms = [];
 
@@ -98,5 +112,6 @@ export class DetalleEventoComponent implements OnInit {
 
     this.showTicketModal = false;
     this.showFormModal = true;
+    this.currentStep = 2;
   }
 }
