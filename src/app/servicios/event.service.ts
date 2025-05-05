@@ -18,4 +18,9 @@ export class EventService {
     return this.http.get(`${this.apiUrl}${id}`);
   }
 
+  // Método para actualizar los participantes del evento
+  actualizarEventoConParticipantes(evento: any): Observable<any> {
+    const url = `${this.apiUrl}${evento.id}`; // Asumiendo que el ID del evento se pasa con el evento
+    return this.http.put(url, evento); // Enviamos todo el objeto del evento actualizado
+  }
 }

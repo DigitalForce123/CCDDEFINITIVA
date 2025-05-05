@@ -26,8 +26,8 @@ export class DetalleEventoComponent implements OnInit {
   @ViewChild('progressBar', { static: true }) progressBar!: ElementRef;
 
   availableTickets = [
-    { id: 1, name: 'Ascenso a la Torre de Cali', price: 75000, quantity: 0 },
-    { id: 2, name: 'Chiquirun 2K', price: 75000, quantity: 0 }
+/*     { id: 1, name: 'Ascenso a la Torre de Cali', price: 75000, quantity: 0 },
+    { id: 2, name: 'Chiquirun 2K', price: 75000, quantity: 0 } */
   ];
 
   selectedTickets: any[] = [];
@@ -82,6 +82,7 @@ export class DetalleEventoComponent implements OnInit {
         this.updateProgressBar();
       }, 500);
     }
+    this.continuarConFormulario(); // Esto ya hace todo lo necesario
   }
 
   prevStep(): void {
@@ -113,6 +114,14 @@ export class DetalleEventoComponent implements OnInit {
     if (id) {
       this.eventosService.getEventoById(id).subscribe(evento => {
         this.event = evento;
+        this.availableTickets = evento.tickets.map(ticket => ({
+          id: ticket.tipo,  // Utilizamos el tipo como identificador
+          name: ticket.tipo,
+          price: ticket.valor,
+          available: ticket.disponibles - ticket.seleccionados,
+          selected: 0,
+          quantity: 0
+        }));
       });
     }
   }
@@ -147,6 +156,7 @@ export class DetalleEventoComponent implements OnInit {
   }
 
   irAlPago() {
+    this.actualizarParticipantes(); // Llamada para actualizar los participantes
     this.currentStep = 3;
     this.showFormModal = false;
     // Lógica adicional para pasar al modal de pago...
@@ -204,7 +214,8 @@ export class DetalleEventoComponent implements OnInit {
       for (let i = 0; i < ticket.quantity; i++) {
         this.ticketForms.push({
           name: '',
-          email: ''
+          email: '',
+          tipo: ticket.name  // 🟢 Añadimos el tipo de ticket
         });
       }
     });
@@ -213,5 +224,33 @@ export class DetalleEventoComponent implements OnInit {
     this.showFormModal = true;
     this.currentStep = 2;
   }
+
+  actualizarParticipantes() {
+    // Crear un nuevo array de participantes con la información necesaria
+    const participantes = this.ticketForms.map(form => ({
+      name: form.name,
+      email: form.email,
+      tipo: form.tipo
+    }));
+
+    // Agregar los participantes al evento
+    const updatedEvent = {
+      ...this.event, // Mantener todos los datos actuales del evento
+      participants: [...(this.event.participants || []), ...participantes] // Agregar los nuevos participantes sin reemplazar los existentes
+    };
+
+    console.log("updated event", updatedEvent)
+    // Hacer la petición al backend para actualizar el evento completo
+    this.eventosService.actualizarEventoConParticipantes(updatedEvent).subscribe(
+      (response) => {
+        console.log('Evento y participantes actualizados correctamente');
+        // Puedes redirigir a otra página o mostrar un mensaje
+      },
+      (error) => {
+        console.error('Error al actualizar el evento y participantes', error);
+      }
+    );
+  }
+
 
 }

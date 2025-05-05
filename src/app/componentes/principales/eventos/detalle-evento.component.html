@@ -22,14 +22,14 @@
             </p>
             <p>{{ event?.description }}</p>
 
-            <div class="payment-section">
+            <!-- <div class="payment-section">
               <span><strong>Paga online:</strong></span>
               <img src="assets/payments/pse.png" alt="PSE" />
               <img src="assets/payments/visa.png" alt="Visa" />
               <img src="assets/payments/mastercard.png" alt="Mastercard" />
               <img src="assets/payments/amex.png" alt="Amex" />
               <img src="assets/payments/efecty.png" alt="Efecty" class="efecty-icon" />
-            </div>
+            </div> -->
 
             <button class="btn btn-primary mt-3" (click)="comprarETicket()">
               <i class="fa-solid fa-ticket"></i> Comprar E-ticket
@@ -83,63 +83,28 @@
 <!-- Modal 2: Selección de tickets -->
 <div class="modal-backdrop" *ngIf="showTicketModal">
   <div class="modal-content">
-    <div class="modal-center modal-tickets">
-      <!-- Modal nuevo prueba con animación -->
-      <div id="container" class="container mt-5">
-        <!-- Progress bar -->
-        <div class="progress px-1" style="height: 3px;">
-          <div
-            class="progress-bar"
-            role="progressbar"
-            aria-valuenow="0"
-            aria-valuemin="0"
-            aria-valuemax="100"
-            #progressBar
-          ></div>
-        </div>
-
-        <!-- Step indicators -->
-        <div class="step-container d-flex justify-content-between my-3">
-          <div class="step-circle" (click)="displayStep(1)">1</div>
-          <div class="step-circle" (click)="displayStep(2)">2</div>
-          <div class="step-circle" (click)="displayStep(3)">3</div>
-        </div>
-
-        <!-- Multi-step form -->
-        <form id="multi-step-form" #form>
-          <!-- Step 1 -->
-          <div class="step step-1" #step>
-            <h3>Step 1</h3>
-            <div class="mb-3">
-              <label for="field1" class="form-label">Field 1:</label>
-              <input type="text" class="form-control" id="field1" name="field1" />
-            </div>
-            <button type="button" class="btn btn-primary" (click)="nextStep()">Next</button>
-          </div>
-
-          <!-- Step 2 -->
-          <div class="step step-2" #step>
-            <h3>Step 2</h3>
-            <div class="mb-3">
-              <label for="field2" class="form-label">Field 2:</label>
-              <input type="text" class="form-control" id="field2" name="field2" />
-            </div>
-            <button type="button" class="btn btn-primary me-2" (click)="prevStep()">Previous</button>
-            <button type="button" class="btn btn-primary" (click)="nextStep()">Next</button>
-          </div>
-
-          <!-- Step 3 -->
-          <div class="step step-3" #step>
-            <h3>Step 3</h3>
-            <div class="mb-3">
-              <label for="field3" class="form-label">Field 3:</label>
-              <input type="text" class="form-control" id="field3" name="field3" />
-            </div>
-            <button type="button" class="btn btn-primary me-2" (click)="prevStep()">Previous</button>
-            <button type="submit" class="btn btn-success">Submit</button>
-          </div>
-        </form>
+    <div class="step step-1" #step>
+      <!-- Indicador de pasos -->
+      <div class="step-indicator">
+        <div class="progress-line" [style.width]="progressWidth"></div>
+        <div class="step" [ngClass]="{ 'active': currentStep === 1 }">Tickets</div>
+        <div class="step" [ngClass]="{ 'active': currentStep === 2 }">Datos</div>
+        <div class="step" [ngClass]="{ 'active': currentStep === 3 }">Pago</div>
       </div>
+      <h3 style="color:#ff8c00">Paso 1: Selección de Tickets</h3>
+      <div class="mb-3" *ngFor="let ticket of availableTickets">
+        <label for="ticket-{{ ticket.id }}" class="form-label">{{ ticket.name }} ({{ ticket.price | currency:'COP':'symbol':'1.0-0' }})</label>
+        <div class="d-flex align-items-center">
+          <button type="button" class="btn btn-secondary" (click)="decreaseQuantity(ticket)" [disabled]="ticket.quantity <= 0" style="background-color: rgb(104, 0, 0); border-color:rgb(104, 0, 0) ;">-</button>
+          <input type="number" class="form-control mx-2" [value]="ticket.quantity" readonly id="ticket-{{ ticket.id }}" />
+          <button type="button" class="btn btn-secondary" (click)="increaseQuantity(ticket)" [disabled]="ticket.quantity >= ticket.available" style="background-color: rgb(2, 99, 10); border-color: rgb(2, 99, 10);">+</button>
+        </div>
+        <small class="form-text text-muted">Disponibles: {{ ticket.available }} - Seleccionados: {{ ticket.quantity }}</small>
+      </div>
+      <div *ngIf="selectedTickets.length > 0">
+        <h4>Total: <span style="color:black">{{ getTotal() | currency:'COP':'symbol':'1.0-0' }}</span></h4>
+      </div>
+      <button type="button" class="btn btn-primary" (click)="nextStep()">Next</button>
     </div>
   </div>
 </div>
@@ -158,6 +123,7 @@
       <h5>Datos de los asistentes</h5>
       <form class="ticket-form" *ngIf="ticketForms.length">
         <h6>Asistente {{ currentFormIndex + 1 }} de {{ ticketForms.length }}</h6>
+        <p class="text-muted mb-2">Ticket: {{ currentTicketForm.tipo }}</p>
         <input
           type="text"
           placeholder="Nombre"
@@ -193,6 +159,7 @@
         <button
           class="btn btn-primary"
           *ngIf="!isLastForm"
+          [disabled]="!currentTicketForm.name || !currentTicketForm.email"
           (click)="nextForm()"
         >
           Siguiente
@@ -201,10 +168,12 @@
         <button
           class="btn btn-success"
           *ngIf="isLastForm"
+          [disabled]="!currentTicketForm.name || !currentTicketForm.email"
           (click)="irAlPago()"
         >
           Ir al Pago
         </button>
+
       </div>
     </div>
   </div>
