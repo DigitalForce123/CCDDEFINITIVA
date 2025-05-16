@@ -22,15 +22,6 @@
             </p>
             <p>{{ event?.description }}</p>
 
-            <!-- <div class="payment-section">
-              <span><strong>Paga online:</strong></span>
-              <img src="assets/payments/pse.png" alt="PSE" />
-              <img src="assets/payments/visa.png" alt="Visa" />
-              <img src="assets/payments/mastercard.png" alt="Mastercard" />
-              <img src="assets/payments/amex.png" alt="Amex" />
-              <img src="assets/payments/efecty.png" alt="Efecty" class="efecty-icon" />
-            </div> -->
-
             <button class="btn btn-primary mt-3" (click)="comprarETicket()">
               <i class="fa-solid fa-ticket"></i> Comprar E-ticket
             </button>
@@ -72,6 +63,17 @@
   <div class="modal-content">
     <div class="modal-center">
       <h5>Cargando tickets disponibles...</h5>
+      <div class="spinner-border text-success" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" *ngIf="showLoaderParticipants">
+  <div class="modal-content">
+    <div class="modal-center">
+      <h5>Realizando el Registro...</h5>
       <div class="spinner-border text-success" role="status">
         <span class="visually-hidden">Loading...</span>
       </div>
@@ -175,6 +177,17 @@
         </button>
 
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 4: Confirmación -->
+<div class="modal-backdrop" *ngIf="showSuccessModal">
+  <div class="modal-content text-center">
+    <div class="modal-center">
+      <h4 class="text-success">¡Registro exitoso!</h4>
+      <p>Tu inscripción ha sido registrada correctamente.</p>
+      <button class="btn btn-primary" (click)="cerrarModales()">Cerrar</button>
     </div>
   </div>
 </div>

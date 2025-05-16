@@ -35,6 +35,9 @@ export class DetalleEventoComponent implements OnInit {
 
   currentFormIndex = 0;
 
+  showSuccessModal = false;
+  showLoaderParticipants = false;
+
   constructor(
     private route: ActivatedRoute,
     private eventosService: EventService,
@@ -156,10 +159,8 @@ export class DetalleEventoComponent implements OnInit {
   }
 
   irAlPago() {
-    this.actualizarParticipantes(); // Llamada para actualizar los participantes
     this.currentStep = 3;
-    this.showFormModal = false;
-    // Lógica adicional para pasar al modal de pago...
+    this.actualizarParticipantes(); // Llamada para actualizar los participantes
   }
   // 🔘 Mostrar loader y luego pasar a selección
   comprarETicket() {
@@ -224,8 +225,18 @@ export class DetalleEventoComponent implements OnInit {
     this.showFormModal = true;
     this.currentStep = 2;
   }
+  cerrarModales(): void {
+    this.showSuccessModal = false;
+    this.showTicketModal = false;
+    this.showFormModal = false;
+    this.selectedTickets = [];
+    this.ticketForms = [];
+    this.currentStep = 1;
+  }
 
   actualizarParticipantes() {
+    this.showFormModal = false;
+    this.showLoaderParticipants = true;
     // Crear un nuevo array de participantes con la información necesaria
     const participantes = this.ticketForms.map(form => ({
       name: form.name,
@@ -239,10 +250,12 @@ export class DetalleEventoComponent implements OnInit {
       participants: [...(this.event.participants || []), ...participantes] // Agregar los nuevos participantes sin reemplazar los existentes
     };
 
-    console.log("updated event", updatedEvent)
     // Hacer la petición al backend para actualizar el evento completo
     this.eventosService.actualizarEventoConParticipantes(updatedEvent).subscribe(
       (response) => {
+        console.log("response", response)
+          this.showLoaderParticipants = false;
+          this.showSuccessModal = true;
         console.log('Evento y participantes actualizados correctamente');
         // Puedes redirigir a otra página o mostrar un mensaje
       },
