@@ -1,4 +1,4 @@
-.event-wrapper {
+/* .event-wrapper {
   font-family: 'Segoe UI', sans-serif;
 }
 
@@ -110,7 +110,6 @@
 }
 
 
-/* Fondo oscuro del modal */
 .modal-backdrop {
   position: fixed;
   top: 0;
@@ -126,7 +125,7 @@
   overflow-y: auto;
 }
 
-/* Contenido del modal */
+
 .modal-content {
   background-color: #fff;
   border-radius: 16px;
@@ -140,16 +139,16 @@
 .spinner-border {
   width: 3rem;
   height: 3rem;
-  color: #28a745; /* Bootstrap success green */
+  color: #28a745;
 }
 
-/* Animación de entrada */
+
 @keyframes fadeIn {
   from { opacity: 0; transform: scale(0.95); }
   to   { opacity: 1; transform: scale(1); }
 }
 
-/* Título del modal */
+
 .modal-header {
   font-size: 1.8rem;
   font-weight: 600;
@@ -158,7 +157,7 @@
   color: #333;
 }
 
-/* Tabla de tickets */
+
 .modal-tickets {
   max-height: 80vh;
   overflow-y: auto;
@@ -252,7 +251,6 @@
   color: white;
 }
 
-/* indicadores */
 .step-indicator {
   position: relative;
   display: flex;
@@ -338,7 +336,7 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 10px;
-  cursor: pointer; /* Added cursor pointer */
+  cursor: pointer;
 }
 
 .step-line {
@@ -354,3 +352,4 @@
 #multi-step-form{
   overflow-x: hidden;
 }
+ */

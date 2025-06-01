@@ -42,7 +42,7 @@ const routes: Routes = [
   { path: 'contacto', component: ContactoComponent, },
 
   // EVENTOS
-  { path: 'evento/:id', component: DetalleEventoComponent, },
+  //{ path: 'evento/:id', component: DetalleEventoComponent, },
 
 
 
