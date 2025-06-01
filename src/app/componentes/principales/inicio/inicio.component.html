@@ -1,4 +1,4 @@
-<header class="header-container">
+<!-- <header class="header-container">
   <video autoplay loop muted playsinline class="video-bg">
     <source src="../../../../assets/video-header.mp4" type="video/mp4">
     Tu navegador no soporta videos.
@@ -14,10 +14,6 @@
 </header>
 
 <div class="container text-center mt-4">
-  <!-- <section class="race-map mb-5">
-    <h2>Mapa de la Carrera</h2>
-    <img src="../../../../assets/mapa-carrera.png" alt="Mapa de la carrera" class="img-fluid rounded shadow-lg">
-  </section> -->
   <h2 class="mb-4">Eventos</h2>
   <section class="event-grid">
     <div class="col" *ngFor="let event of eventosFiltrados">
@@ -30,6 +26,54 @@
           </div>
         </div>
       </a>
+    </div>
+  </section>
+</div>
+ -->
+<header class="header-container">
+  <video autoplay loop muted playsinline class="video-bg">
+    <source src="../../../../assets/video-header.mp4" type="video/mp4">
+    Tu navegador no soporta videos.
+  </video>
+  <div class="overlay">
+    <h1 class="display-4">Explora, Conéctate, Vive la Experiencia</h1>
+    <p class="lead">Descubre los eventos más emocionantes cerca de ti.</p>
+    <div class="input-group mb-3 w-50 mx-auto">
+      <input [(ngModel)]="terminoBusqueda" type="text" class="form-control" placeholder="Busca eventos, ciudades o categorías...">
+      <button class="btn btn-primary" (click)="buscarEventos()">Buscar</button>
+    </div>
+  </div>
+</header>
+<div class="container text-center">
+
+
+<!--   <section class="featured-events">
+    <h2>Eventos Destacados</h2>
+
+    <div class="slider">
+      <button class="slider-btn prev" (click)="prevEvent()">&#10094;</button>
+
+      <div *ngFor="let event of eventosDestacados; let i = index"
+           class="slide" [class.active]="i === currentIndex">
+        <img [src]="event.image" alt="{{ event.title }}">
+        <div class="event-info">
+          <h5>{{ event.title }}</h5>
+          <p>{{ event.description }}</p>
+        </div>
+      </div>
+
+      <button class="slider-btn next" (click)="nextEvent()">&#10095;</button>
+    </div>
+  </section> -->
+
+
+  <section class="event-grid">
+    <div class="card shadow-sm" *ngFor="let event of eventosFiltrados">
+      <img [src]="event.image" class="card-img-top" alt="{{ event.title }}">
+      <div class="card-body">
+        <h5 class="card-title">{{ event.title }}</h5>
+        <p class="card-text">{{ event.description }}</p>
+      </div>
     </div>
   </section>
 </div>

@@ -153,7 +153,7 @@ export class CarreraregistrarcodigoComponent {
     const pdfDefinition: any = {
       background: [
         {
-          image: await this.getBase64ImageFromURL("../../assets/membrete.png"),
+          image: await this.getBase64ImageFromURL("../../assets/membrete1.png"),
           width: 600,
           height: 850,
           opacity: 1,
@@ -172,7 +172,7 @@ export class CarreraregistrarcodigoComponent {
       ]
     }
     const pdf = pdfMake.createPdf(pdfDefinition);
-    pdf.download('Carrera.pdf');
+    pdf.download('Boleta_registro.pdf');
   }
 
 
@@ -289,6 +289,7 @@ export class CarreraregistrarcodigoComponent {
 
     else {
       this.isLoading = true;
+      this.nuevoUsuario.variable16 = "pendiente"
       console.log(this.nuevoUsuario)
       this.carreraService.createUserCarrera7k(this.nuevoUsuario).subscribe(
         (data: any) => {
