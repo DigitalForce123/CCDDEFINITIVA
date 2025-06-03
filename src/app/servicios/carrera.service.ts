@@ -18,8 +18,8 @@ export class CarreraService {
   respuesta = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
-  //hosteo = 'http://localhost:3306/'
-  hosteo = 'https://calzado-088fcabee209.herokuapp.com/'
+  hosteo = 'http://localhost:4000/'
+  //hosteo = 'https://calzado-088fcabee209.herokuapp.com/'
 
 
   constructor(private httpClient: HttpClient) { }
