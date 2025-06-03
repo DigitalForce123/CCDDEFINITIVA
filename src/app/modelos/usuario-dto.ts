@@ -17,6 +17,13 @@ export interface UsuarioDto {
     variable14?: string;
     variable15?: string;
     variable16?: string;
+    variable17?: string;
+    variable18?: string;
+    variable19?: string;
+    variable20?: string;
+    variable21?: string;
+    variable22?: string;
+    variable23?: string;   
     evento?: string;
 
 

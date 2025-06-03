@@ -20,7 +20,7 @@ export class CarreraregistrarcodigoComponent {
   isLoading: boolean = false; // booleano para detectar cuándo salta el loading
 
   usuarioDto: UsuarioDto[] = [];
-  nuevoUsuario: UsuarioDto = { variable1: '', variable2: '', variable3: '', variable4: '', variable5: '', variable6: '', variable7: '', variable8: '', variable9: '', variable10: '', variable11: '', variable12: '', variable13: '', variable14: '', variable15: '', variable16: 'pendiente', evento: 'ciudadela', };
+  nuevoUsuario: UsuarioDto = { variable1: '', variable2: '', variable3: '', variable4: '', variable5: '', variable6: '', variable7: '', variable8: '', variable9: '', variable10: '', variable11: '', variable12: '', variable13: '', variable14: '', variable15: '', variable16: '', variable17: '', variable18: '', variable19: '', variable20: '', variable21: '', variable22: '', variable23: '', evento: 'ciudadela', };
   terminos = ""
   terminosprincipal = ""
   pdfnombremenor = ""
@@ -104,7 +104,7 @@ export class CarreraregistrarcodigoComponent {
 
     if (this.terminosprincipal == "") {
 
-      Swal.fire('Se debe aceptar los terminos y condiciones de las consideraciones y reglas de la carrera atletico recreativa')
+      Swal.fire('Se debe aceptar los terminos y condiciones del evento')
 
     } else {
       this.terminosver = false
@@ -181,7 +181,8 @@ export class CarreraregistrarcodigoComponent {
 
 
 
-    this.nuevoUsuario.variable5 = this.edad + this.genero
+    this.nuevoUsuario.variable5 = this.edad 
+    this.nuevoUsuario.variable13= this.genero
     this.nuevoUsuario.variable8 = this.comuna + this.seleccionarDepartamento + this.seleccionarCiudad
     this.nuevoUsuario.variable10 = this.TipoSangre + this.eps
     this.nuevoUsuario.variable12 = this.tipoidadulto + this.Frecuencia + this.discapacidad
@@ -189,7 +190,7 @@ export class CarreraregistrarcodigoComponent {
 
     this.pdfnombremenor = this.nuevoUsuario.variable3
 
-    this.nuevoUsuario.variable15= String(this.x)
+    this.nuevoUsuario.variable23= String(this.x)
 
 
 
@@ -235,29 +236,15 @@ export class CarreraregistrarcodigoComponent {
 
       Swal.fire('Por favor diligenciar un correo valido. Ejemplo: caliciudaddeportiva@gmail.com')
 
-    } */ else if (String(this.seleccionarDepartamento) == "") {
-      Swal.fire('El departamento debe ser diligenciado ')
-
-    } else if (String(this.seleccionarCiudad).length > 500) {
-      Swal.fire('Debes diligenciar el departamento y la ciudad ')
-    }
-
+    } */ 
 
 
     else if (this.nuevoUsuario.variable9 == "") {
       Swal.fire('la direccion debe ser diligenciada')
 
 
-    } else if (this.nuevoUsuario.variable10 == "") {
-      Swal.fire('La eps del participante debe ser diligenciada')
-
-
-    } else if (this.TipoSangre == "") {
-      Swal.fire('El tipo de sangre del participante debe ser diligenciado')
-
-
-    } else if (this.nuevoUsuario.variable11 == "") {
-      Swal.fire('La talla de la camisa del participante debe ser diligenciada ')
+    }   else if (this.nuevoUsuario.variable11 == "") {
+      Swal.fire('La talla de los zapatos del participante debe ser diligenciada ')
 
     }
     else if (this.nuevoUsuario.variable12 == "") {
@@ -289,7 +276,7 @@ export class CarreraregistrarcodigoComponent {
 
     else {
       this.isLoading = true;
-      this.nuevoUsuario.variable16 = "pendiente"
+      this.nuevoUsuario.variable21 = "pendiente"
       console.log(this.nuevoUsuario)
       this.carreraService.createUserCarrera7k(this.nuevoUsuario).subscribe(
         (data: any) => {

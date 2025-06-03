@@ -164,25 +164,7 @@
 
 
 
-        <div class="form-floating mb-3 fondo1 q">
 
-            <select class="form-select fondo1 " aria-label="Default select example"
-                [(ngModel)]="seleccionarDepartamento" (change)="onSelect($any($event.target).value)" id="variable7"
-                placeholder="variable7" name="variable7">
-                <option *ngFor="let departamento of departamentos" value={{departamento.id}}>
-                    {{departamento.name}}
-                </option>
-            </select>
-            <label for="floatingInput">departamento</label>
-        </div>
-        <div class="form-floating mb-3 fondo1 q">
-
-            <select class="form-select fondo1 " aria-label="Default select example" [(ngModel)]="seleccionarCiudad"
-                id="seleccionarCiudad" placeholder="seleccionarCiudad" name="seleccionarCiudad">
-                <option *ngFor="let ciudad of ciudades" value={{ciudad.id}}>{{ciudad.name}}</option>
-            </select>
-            <label for="floatingInput">Ciudad</label>
-        </div>
 
         <div class="form-floating mb-3 fondo1 q">
 
@@ -247,43 +229,11 @@
         </div>
 
 
-        <div class="form-floating mb-3">
-            <input class="form-control fondo2 " name="variable1" id="variable1" [(ngModel)]="eps"
-                placeholder="variable1" required>
-            <label for="floatingPassword">EPS </label>
-
-        </div>
-
-
-
-        <div class="form-floating mb-3">
-            <select class="form-select fondo1" aria-label="Default select example" [(ngModel)]="TipoSangre"
-                id="variable4" placeholder="variable4" name="variable4">
-
-                <option value="A+">A+</option>
-                <option value="A-">A-</option>
-                <option value="B+">B+
-                </option>
-                <option value="B-">B-
-                </option>
-                <option value="AB+">AB+
-                </option>
-                <option value="AB-">AB-
-                </option>
-                <option value="O+">O+
-                </option>
-                <option value="O-">O-
-                </option>
 
 
 
 
-
-            </select>
-            <label for="floatingInput">Tipo de sangre
-            </label>
-
-        </div>
+     
         <div class="form-floating mb-3">
           <select
               class="form-select fondo1"
@@ -356,41 +306,23 @@
 
         </div>
 
-
-
-
-        <div class="form-floating mb-3">
-            <input class="form-control fondo2" name="variable2" id="variable2" [(ngModel)]="nuevoUsuario.variable13"
-                placeholder="nombre" required>
-            <label for="floatingPassword">"• ¿Ha participado en otras carreras de la Secretaría del deporte? ¿Cuál/es?
-                (Pregunta abierta)
-                "</label>
-        </div>
+        
 
         <div class="form-floating mb-3">
-            <select class="form-select fondo1" aria-label="Default select example" [(ngModel)]="Frecuencia"
+            <select class="form-select fondo1" aria-label="Default select example" [(ngModel)]="nuevoUsuario.variable19"
                 id="variable3" placeholder="variable3" name="variable3">
 
-                <option value="1">1 vez al mes </option>
+                <option value="Miercoles 4 de Junio">Miercoles 4 de Junio</option>
+                <option value="Jueves 5 de Junio">Jueves 5 de Junio  </option>
+                <option value="Viernes 6 de Junio">Viernes 6 de Junio</option>
 
-                <option value="2">2 veces al mes </option>
-                <option value="3">3 veces al mes</option>
 
-
-                <option value="4">Todas</option>
 
             </select>
-            <label for="floatingInput">"• ¿Con qué frecuencia asiste a la Ciclo vida en Cali?
-                "                 </label>
+            <label for="floatingInput">Dia de Entrega</label>
 
         </div>
 
-        <div class="form-floating mb-3">
-            <input class="form-control fondo2 " name="variable8" id="variable8" [(ngModel)]="nuevoUsuario.variable14"
-                placeholder="variable8" required>
-            <label for="floatingPassword">Contacto de emergencia con nombre y celular</label>
-
-        </div>
 
 
 
