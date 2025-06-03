@@ -10,6 +10,11 @@ interface TallaResponse {
   payload: { nombre: string; cantidadDisponible: number }[];
 }
 
+interface HorarioResponse {
+  status: number;
+  payload: { nombre: string; cantidadDisponible: number }[];
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,8 +23,8 @@ export class CarreraService {
   respuesta = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
-  hosteo = 'http://localhost:4000/'
-  //hosteo = 'https://calzado-088fcabee209.herokuapp.com/'
+  //hosteo = 'http://localhost:4000/'
+  hosteo = 'https://calzado-088fcabee209.herokuapp.com/'
 
 
   constructor(private httpClient: HttpClient) { }
@@ -74,6 +79,13 @@ export class CarreraService {
   public getTallasDisponibles(): Observable<TallaResponse> {
     return this.httpClient.get<TallaResponse>(
       this.hosteo + 'Solicitud/GetTallasDisponibles',
+      this.respuesta
+    );
+  }
+
+  public getHorariosDisponibles(): Observable<HorarioResponse> {
+    return this.httpClient.get<TallaResponse>(
+      this.hosteo + 'Solicitud/GetHorariosDisponibles',
       this.respuesta
     );
   }

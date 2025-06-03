@@ -78,6 +78,7 @@ export class CarreraregistrarcodigoComponent {
   public seleccionarCiudad: DepartamentoI = { id: 0, name: '' };
   public ciudades: CiudadI[] = [];
   public tallasDisponibles: { nombre: string; cantidadDisponible: number }[] = [];
+  public horariosDisponibles: { nombre: string; cantidadDisponible: number }[] = [];
 
   constructor(
     private carreraService: CarreraService, private departamentosService: DepartamentosService) { }
@@ -94,7 +95,17 @@ export class CarreraregistrarcodigoComponent {
         Swal.fire('Error', 'No se pudieron cargar las tallas disponibles', 'error');
       }
     );
+    this.carreraService.getHorariosDisponibles().subscribe(
+      (response) => {
+        this.horariosDisponibles = this.horariosDisponibles = response.payload; // Asigna solo el array del payload
+      },
+      (error) => {
+        console.error('Error al obtener los horarios disponibles:', error);
+        Swal.fire('Error', 'No se pudieron cargar los horarios disponibles', 'error');
+      }
+    );
   }
+
   onSelect(usarName: number): void {
     this.ciudades = this.departamentosService.getCiudades().filter(item => item.departamentoId == usarName);
   }
@@ -181,7 +192,7 @@ export class CarreraregistrarcodigoComponent {
 
 
 
-    this.nuevoUsuario.variable5 = this.edad 
+    this.nuevoUsuario.variable5 = this.edad
     this.nuevoUsuario.variable13= this.genero
     this.nuevoUsuario.variable8 = this.comuna + this.seleccionarDepartamento + this.seleccionarCiudad
     this.nuevoUsuario.variable10 = this.TipoSangre + this.eps
@@ -236,7 +247,7 @@ export class CarreraregistrarcodigoComponent {
 
       Swal.fire('Por favor diligenciar un correo valido. Ejemplo: caliciudaddeportiva@gmail.com')
 
-    } */ 
+    } */
 
 
     else if (this.nuevoUsuario.variable9 == "") {
@@ -294,6 +305,15 @@ export class CarreraregistrarcodigoComponent {
                 console.error('Error al obtener las tallas disponibles:', error);
               }
             );
+            this.carreraService.getHorariosDisponibles().subscribe(
+              (response) => {
+                this.horariosDisponibles = this.horariosDisponibles = response.payload; // Asigna solo el array del payload
+                console.log("horarios:", this.horariosDisponibles)
+              },
+              (error) => {
+                console.error('Error al obtener los horarios disponibles:', error);
+              }
+            );
             this.nuevoUsuario.variable1 = ""
             this.nuevoUsuario.variable2 = ""
             this.nuevoUsuario.variable3 = ""
@@ -342,6 +362,15 @@ export class CarreraregistrarcodigoComponent {
                 Swal.fire('Error', 'No se pudieron cargar las tallas disponibles', 'error');
               }
             );
+            this.carreraService.getHorariosDisponibles().subscribe(
+              (response) => {
+                this.horariosDisponibles = this.horariosDisponibles = response.payload; // Asigna solo el array del payload
+                console.log("horarios:", this.horariosDisponibles)
+              },
+              (error) => {
+                console.error('Error al obtener los horarios disponibles:', error);
+              }
+            );
             this.formulariomenor = true
             this.formulariomayor = false
             this.variablemenorvar = false;
@@ -360,6 +389,15 @@ export class CarreraregistrarcodigoComponent {
               Swal.fire('Error', 'No se pudieron cargar las tallas disponibles', 'error');
             }
           );
+          this.carreraService.getHorariosDisponibles().subscribe(
+              (response) => {
+                this.horariosDisponibles = this.horariosDisponibles = response.payload; // Asigna solo el array del payload
+                console.log("horarios:", this.horariosDisponibles)
+              },
+              (error) => {
+                console.error('Error al obtener los horarios disponibles:', error);
+              }
+            );
           Swal.fire('error al intentar registrate por favor intentalo mas tarde')
           this.formulariomenor = true
           this.formulariomayor = false
