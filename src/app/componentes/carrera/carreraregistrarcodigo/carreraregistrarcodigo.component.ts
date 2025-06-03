@@ -164,7 +164,7 @@ export class CarreraregistrarcodigoComponent {
     const pdfDefinition: any = {
       background: [
         {
-          image: await this.getBase64ImageFromURL("../../assets/membrete1.png"),
+          image: await this.getBase64ImageFromURL("../../assets/boletacalzado.png"),
           width: 600,
           height: 850,
           opacity: 1,
