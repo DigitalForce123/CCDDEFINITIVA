@@ -14,7 +14,7 @@ import { empty } from 'rxjs';
   styleUrls: ['./iniciocarrera.component.css']
 })
 export class IniciocarreraComponent  implements OnInit {
-
+  isLoading: boolean = false; // booleano para detectar cuándo salta el loading
   usuarioDto: UsuarioDto[] = [];
   usuarioDto1: UsuarioDto[] = [];
   nuevoregaloDto1: RegaloDto[] = []
@@ -137,9 +137,150 @@ export class IniciocarreraComponent  implements OnInit {
       }
     );
   }
+  public crearregalo() {
+
+    this.nuevoregalo.numero = this.obtenerHoraActual();
+    console.log(this.nuevoregalo.numero)
+    this.isLoading = true;
+    this.carreraService.createregalo(this.nuevoregalo).subscribe(
+      (data: any) => {
+
+        this.isLoading = false;
+
+        if (data.status == 200) {
+
+          Swal.fire('Felicidades reclamaste tu regalo en la fecha de  ' + this.nuevoregalo.numero + " Con el administrador de la sesion =" + this.nuevoregalo.idadminfin)
 
 
 
+
+        } else {
+          this.idadulto = ""
+
+          Swal.fire(data.payload.message)
+        }
+      }, (error) => {
+        console.log(error);
+        Swal.fire('error al intentar registrate por favor intentalo mas tarde')
+
+      }
+    );
+  }
+
+    public reclamarpremio(group: UsuarioDto) {
+
+
+
+
+    this.nuevoUsuario.variable1 = group.variable1
+    this.nuevoUsuario.idusuario = group.idusuario
+
+
+
+    if (this.nuevoUsuario.variable1 == "") {
+      Swal.fire('Identificacion no diligenciada')
+    }
+
+
+    else {
+
+      this.isLoading = true;
+
+      this.carreraService.entregarregalo(this.nuevoUsuario).subscribe(
+        (data: any) => {
+          this.isLoading = false;
+
+
+          if (data.status == 200) {
+            this.identificacion = ""
+            this.regalo = ""
+            this.idadulto = ""
+            this.nuevoregalo.codigoregalo = group.variable1
+            this.nuevoregalo.idadminfin = this.sesion
+            this.nuevoregalo.idusuariofin = String(group.idusuario)
+            this.nuevoregalo.numero = group.variable20
+            console.log(this.nuevoregalo)
+            console.log(this.nuevoUsuario)
+            this.crearregalo()
+            this.formModal.hide();
+
+
+          } else {
+
+            Swal.fire(data.payload.message)
+          }
+        }, (error) => {
+          console.log(error);
+          Swal.fire('error al intentar registrate por favor intentalo mas tarde')
+
+        }
+      );
+
+
+
+
+
+
+
+
+    }
+
+  }
+  public obtenerHoraActual(): string {
+    const fechaActual = new Date();
+    return fechaActual.toLocaleString(); // Devuelve la hora en formato legible
+  }
+
+
+
+  public entregarregalo() {
+
+    this.nuevoUsuario.variable1 = this.identificacion
+
+
+
+    if (this.nuevoUsuario.variable1 == "") {
+      Swal.fire('Identificacion no diligenciada')
+    }
+
+
+
+    else {
+      this.isLoading = true;
+      this.carreraService.GetRegalopersonamenor(this.nuevoUsuario).subscribe(
+        (data: any) => {
+          this.isLoading = false;
+
+          if (data.status == 200) {
+            this.usuarioDto1 = data.payload;
+            this.formModal.show();
+            console.log(this.nuevoUsuario)
+
+
+
+          } else {
+
+            Swal.fire(data.payload.message)
+            console.log(this.nuevoUsuario)
+          }
+        }, (error) => {
+          console.log(error);
+          Swal.fire('error al intentar registrate por favor intentalo mas tarde')
+          console.log(this.nuevoUsuario)
+
+        }
+      );
+
+
+
+
+
+
+
+
+    }
+
+  }
 
 }
 

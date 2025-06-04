@@ -50,7 +50,7 @@ export class LogincarreraComponent  implements OnInit {
           if (data.status == 200) {
 
             this.usuarioservice.logincarrerafin(this.nuevoAdmin.usuarioadmin)
-            this.router.navigate(['carrera/login/inicio'])
+            this.router.navigate(['eventos/entrega'])
             Swal.fire('Bienvenido')
 
           } else {

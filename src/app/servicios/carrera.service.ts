@@ -23,7 +23,7 @@ export class CarreraService {
   respuesta = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
-  //hosteo = 'http://localhost:4000/'
+  //hosteo = 'http://localhost:3306/'
   hosteo = 'https://calzado-088fcabee209.herokuapp.com/'
 
 
@@ -87,6 +87,34 @@ export class CarreraService {
     return this.httpClient.get<TallaResponse>(
       this.hosteo + 'Solicitud/GetHorariosDisponibles',
       this.respuesta
+    );
+  }
+
+  public entregarregalo(data: UsuarioDto): Observable<boolean> {
+
+    return this.httpClient.post<any>(
+      this.hosteo + 'Solicitud/entregaregalo',
+      data,
+      this.respuesta
+
+    );
+  }
+
+  public createregalo(data: RegaloDto): Observable<boolean> {
+
+    return this.httpClient.post<any>(
+      this.hosteo + 'Solicitud/createregalo',
+      data,
+      this.respuesta
+    );
+  }
+
+  public GetRegalopersonamenor(data: UsuarioDto): Observable<any> {
+    return this.httpClient.post<UsuarioDto[]>(
+      this.hosteo + 'Solicitud/GetRegalopersonamenor',
+      data,
+      this.respuesta,
+
     );
   }
 }

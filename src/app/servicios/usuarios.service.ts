@@ -14,7 +14,7 @@ export class UsuariosService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
   // hosteo = 'http://localhost:3306/'
-  hosteo = 'https://runcentro-970219e13e88.herokuapp.com/'
+  hosteo = 'https://calzado-088fcabee209.herokuapp.com/'
 
   Usuario: any
   private _isLoggedciudadela$ = new BehaviorSubject<boolean>(false);
@@ -79,7 +79,7 @@ export class UsuariosService {
     console.log(data)
 
     return this.httpClient.post<any>(
-      this.hosteo + 'Solicitud/logincarrera',
+      this.hosteo + 'Solicitud/loginciudadela',
       data,
       this.respuesta
     );

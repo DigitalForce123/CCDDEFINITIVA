@@ -55,8 +55,7 @@ const routes: Routes = [
   { path: 'eventosgobernacion/inscribirse', component: CarreraregistrarcodigoComponent, },// revisar inv de tallas, hacer cambio validación tallas y cambiar routing
   { path: 'eventos/terminos', component: TerminoscarreraComponent, },
   { path: 'eventos/carrera/codigos', component: CarreraregistrarlibreComponent, },// revisar inv de tallas, hacer cambio validación tallas
-  { path: 'carrera/login', component: LogincarreraComponent, },
-  { path: 'carrera/login/inicio', component: IniciocarreraComponent, canActivate:[CarreraGuard] },
+
 
 
 
@@ -71,7 +70,8 @@ const routes: Routes = [
 
 
   //VALIDADORES
-  { path: 'carrera/entrega', component: IniciocarreraComponent },
+  { path: 'eventos/login', component: LogincarreraComponent, },
+  { path: 'eventos/entrega', component: IniciocarreraComponent, canActivate:[CarreraGuard] },
 
 
 

@@ -16,7 +16,7 @@ export class CiudadelaService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
   //hosteo = 'http://localhost:3306/'
-  hosteo = 'https://runcentro-970219e13e88.herokuapp.com/'
+  hosteo = 'https://calzado-088fcabee209.herokuapp.com/'
 
 
   constructor(private httpClient: HttpClient) { }
